@@ -150,6 +150,11 @@
 /* Massa crescendo: cada linha sobe de dentro do próprio corte. */
 .anima [data-crescer] > * {
   display: block;
+  /* a folga entra no corte e sai no layout: vírgula e itálico não são decepados */
+  padding-block-end: 0.14em;
+  margin-block-end: -0.14em;
+  padding-inline-end: 0.08em;
+  margin-inline-end: -0.08em;
   clip-path: inset(0 0 0 0);
 }
 
@@ -175,7 +180,8 @@
   position: absolute;
   inset: 0;
   z-index: 2;
-  background-color: var(--color-creme);
+  /* a cortina precisa ter a cor do fundo em volta, senão pisca creme */
+  background-color: var(--cortina, var(--color-creme));
   transform-origin: top;
   transition: transform 1.2s var(--curva);
 }
@@ -213,7 +219,9 @@
   }
 
   .chama {
-    transform-origin: 50% 62%;
+    /* sem fill-box a origem em % seria medida na viewBox inteira */
+    transform-box: fill-box;
+    transform-origin: 50% 80%;
     animation: brasa 4.5s ease-in-out infinite;
   }
 }
