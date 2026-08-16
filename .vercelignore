@@ -1,4 +1,6 @@
 # Nada aqui é usado pelo build do site — fica de fora para o deploy subir leve.
-Instagram/
-brand/
-scripts/
+# A barra inicial ancora na raiz: sem ela, "scripts/" também casaria com
+# "src/scripts/", que o site precisa.
+/Instagram/
+/brand/
+/scripts/
