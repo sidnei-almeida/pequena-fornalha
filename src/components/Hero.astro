@@ -8,7 +8,7 @@ import { heroVideo, site } from '../data/site';
     heroVideo.ativo ? (
       <video
         id="video-hero"
-        class="absolute inset-0 h-full w-full object-cover opacity-85"
+        class="hero-fundo absolute inset-0 h-full w-full object-cover opacity-85"
         poster={heroVideo.poster}
         autoplay
         muted
@@ -26,7 +26,7 @@ import { heroVideo, site } from '../data/site';
         src={heroVideo.poster}
         alt=""
         aria-hidden="true"
-        class="absolute inset-0 h-full w-full object-cover opacity-85"
+        class="hero-fundo absolute inset-0 h-full w-full object-cover opacity-85"
       />
     )
   }
@@ -48,12 +48,11 @@ import { heroVideo, site } from '../data/site';
 
     <h1
       class="max-w-[16ch] font-sans text-[clamp(1.95rem,8.4vw,7.5rem)] leading-[0.95] font-bold tracking-[-0.02em] uppercase"
+      data-crescer
     >
-      <span class="block" data-reveal data-reveal-delay="60">Feito devagar,</span>
-      <span class="block" data-reveal data-reveal-delay="140">feito à mão,</span>
-      <span class="block font-serif text-terracota normal-case italic" data-reveal data-reveal-delay="220">
-        feito pra você.
-      </span>
+      <span><span>Feito devagar,</span></span>
+      <span><span>feito à mão,</span></span>
+      <span class="font-serif text-terracota normal-case italic"><span>feito pra você.</span></span>
     </h1>
 
     <p
