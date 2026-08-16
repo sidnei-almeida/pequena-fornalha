@@ -195,10 +195,103 @@
 
 /* Barra de rolagem na paleta, no lugar da cinza do sistema. */
 @supports (scrollbar-color: auto) {
-  html {
-    scrollbar-color: color-mix(in srgb, var(--color-carvao) 35%, transparent) var(--color-creme);
+  * {
+    scrollbar-color: color-mix(in srgb, var(--color-carvao) 40%, transparent) transparent;
     scrollbar-width: thin;
   }
+}
+
+/* Navegadores WebKit ignoram as propriedades acima em versões mais antigas. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--color-carvao) 6%, transparent);
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-carvao) 35%, transparent);
+  border: 3px solid transparent;
+  background-clip: content-box;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-terracota);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Lista do select, montada por src/scripts/select.ts */
+.select-caixa {
+  position: relative;
+}
+
+.select-botao {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-carvao) 25%, transparent);
+  border-radius: 2px;
+  background-color: var(--color-creme);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.select-botao[aria-expanded='true'],
+.select-botao:hover {
+  border-color: var(--color-terracota);
+}
+
+.select-seta {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+  transition: transform 0.25s var(--curva, ease);
+}
+
+.select-botao[aria-expanded='true'] .select-seta {
+  transform: rotate(180deg);
+}
+
+.select-lista {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 0.375rem);
+  right: 0;
+  left: 0;
+  max-height: 16rem;
+  overflow-y: auto;
+  margin: 0;
+  border: 1px solid color-mix(in srgb, var(--color-carvao) 25%, transparent);
+  border-radius: 2px;
+  background-color: var(--color-creme);
+  padding: 0.25rem;
+  list-style: none;
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--color-carvao) 18%, transparent);
+}
+
+.select-opcao {
+  border-radius: 2px;
+  padding: 0.625rem 0.75rem;
+  cursor: pointer;
+}
+
+.select-opcao.em-foco {
+  background-color: color-mix(in srgb, var(--color-carvao) 8%, transparent);
+}
+
+.select-opcao[aria-selected='true'] {
+  background-color: var(--color-terracota);
+  color: var(--color-creme);
 }
 
 @keyframes marquee {

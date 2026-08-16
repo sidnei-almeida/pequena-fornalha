@@ -89,6 +89,7 @@ const assuntos = [
             <select
               id="assunto"
               name="assunto"
+              data-select
               class="campo-select rounded-[2px] border border-carvao/25 bg-creme px-4 py-3 outline-none focus:border-terracota"
             >
               {assuntos.map((assunto) => <option value={assunto}>{assunto}</option>)}
@@ -119,6 +120,10 @@ const assuntos = [
   </section>
 
   <LocalHorarios />
+
+  <script>
+    import '../scripts/select';
+  </script>
 
   <script is:inline define:vars={{ numero: WHATSAPP_NUMBER }}>
     const form = document.getElementById('form-contato');

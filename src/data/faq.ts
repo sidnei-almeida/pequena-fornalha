@@ -89,7 +89,7 @@ export const gruposFaq: GrupoFaq[] = [
       {
         pergunta: 'Vocês têm opção sem glúten?',
         resposta:
-          'Não. Trabalhamos com farinha de trigo e centeio na mesma bancada e no mesmo forno, então não temos como garantir ausência de contaminação cruzada.',
+          'Não. Trabalhamos com farinha de trigo e centeio na mesma bancada e no mesmo forno, e a farinha fica no ar da cozinha inteira. Quem tem alergia ou doença celíaca não deve consumir nossos produtos.',
       },
       {
         pergunta: 'Tem opção vegana?',
