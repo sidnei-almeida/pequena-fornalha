@@ -39,19 +39,21 @@ const fotos = [
   <div class="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20">
     <p class="eyebrow text-creme/70" data-reveal>Nos bastidores</p>
 
-    <div class="mt-8 grid gap-6 sm:grid-cols-3">
+    <div class="mt-8 grid gap-6 sm:grid-cols-3" style="--cortina: var(--color-terracota)">
       {
         fotos.map((foto, indice) => (
           <figure class="m-0" data-reveal data-reveal-delay={indice * 100}>
-            <img
-              src={foto.src}
-              alt={foto.alt}
-              width="1000"
-              height="1250"
-              loading="lazy"
-              decoding="async"
-              class="aspect-[4/5] w-full object-cover"
-            />
+            <span class="block overflow-hidden" data-fornada>
+              <img
+                src={foto.src}
+                alt={foto.alt}
+                width="1000"
+                height="1250"
+                loading="lazy"
+                decoding="async"
+                class="aspect-[4/5] w-full object-cover"
+              />
+            </span>
             <figcaption class="eyebrow mt-4 text-creme/75">{foto.legenda}</figcaption>
           </figure>
         ))
