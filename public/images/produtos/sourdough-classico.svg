@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Sourdough Clássico — foto em breve">
   <defs>
-    <linearGradient id="f1" x1="0" y1="0" x2="0.4" y2="1">
-      <stop offset="0" stop-color="#e3d9bd"/>
+    <linearGradient id="f14" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#d9cfae"/>
       <stop offset="1" stop-color="#27231f" stop-opacity="0.18"/>
     </linearGradient>
-    <radialGradient id="m1" cx="0.38" cy="0.3" r="0.85">
-      <stop offset="0" stop-color="#ab5f43"/>
-      <stop offset="1" stop-color="#683e32"/>
+    <radialGradient id="m14" cx="0.38" cy="0.3" r="0.85">
+      <stop offset="0" stop-color="#8f5137"/>
+      <stop offset="1" stop-color="#5a3429"/>
     </radialGradient>
   </defs>
 
-  <rect width="800" height="1000" fill="url(#f1)"/>
+  <rect width="800" height="1000" fill="url(#f14)"/>
   
     <ellipse cx="400" cy="740" rx="250" ry="36" fill="#27231f" opacity="0.14"/>
-    <circle cx="400" cy="560" r="225" fill="url(#m1)"/>
-    <g stroke="#e3d9bd" stroke-opacity="0.5" stroke-width="11" stroke-linecap="round" fill="none">
+    <circle cx="400" cy="560" r="225" fill="url(#m14)"/>
+    <g stroke="#d9cfae" stroke-opacity="0.5" stroke-width="11" stroke-linecap="round" fill="none">
       <path d="M285 470q115 40 230 0"/>
       <path d="M300 560q100 34 200 0"/>
       <path d="M320 650q80 28 160 0"/>

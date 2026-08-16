@@ -1,19 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Cuca de Banana — foto em breve">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Pão Caseiro Colonial — foto em breve">
   <defs>
-    <linearGradient id="f7" x1="0" y1="0" x2="0.4" y2="1">
+    <linearGradient id="f1" x1="0" y1="0" x2="0.4" y2="1">
       <stop offset="0" stop-color="#e3d9bd"/>
       <stop offset="1" stop-color="#27231f" stop-opacity="0.18"/>
     </linearGradient>
-    <radialGradient id="m7" cx="0.38" cy="0.3" r="0.85">
+    <radialGradient id="m1" cx="0.38" cy="0.3" r="0.85">
       <stop offset="0" stop-color="#ab5f43"/>
       <stop offset="1" stop-color="#683e32"/>
     </radialGradient>
   </defs>
 
-  <rect width="800" height="1000" fill="url(#f7)"/>
+  <rect width="800" height="1000" fill="url(#f1)"/>
   
     <ellipse cx="400" cy="745" rx="245" ry="34" fill="#27231f" opacity="0.14"/>
-    <path d="M175 730V520c0-95 100-150 225-150s225 55 225 150v210Z" fill="url(#m7)"/>
+    <path d="M175 730V520c0-95 100-150 225-150s225 55 225 150v210Z" fill="url(#m1)"/>
     <g stroke="#e3d9bd" stroke-opacity="0.45" stroke-width="9" stroke-linecap="round" fill="none">
       <path d="M235 470q165-55 330 0"/>
       <path d="M215 585h370"/>

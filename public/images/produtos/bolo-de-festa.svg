@@ -1,26 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Bolo de Festa — foto em breve">
   <defs>
-    <linearGradient id="f16" x1="0" y1="0" x2="0.4" y2="1">
-      <stop offset="0" stop-color="#eadfbf"/>
+    <linearGradient id="f19" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#e3d9bd"/>
       <stop offset="1" stop-color="#27231f" stop-opacity="0.18"/>
     </linearGradient>
-    <radialGradient id="m16" cx="0.38" cy="0.3" r="0.85">
-      <stop offset="0" stop-color="#c07249"/>
-      <stop offset="1" stop-color="#7b4632"/>
+    <radialGradient id="m19" cx="0.38" cy="0.3" r="0.85">
+      <stop offset="0" stop-color="#ab5f43"/>
+      <stop offset="1" stop-color="#683e32"/>
     </radialGradient>
   </defs>
 
-  <rect width="800" height="1000" fill="url(#f16)"/>
+  <rect width="800" height="1000" fill="url(#f19)"/>
   
     <ellipse cx="400" cy="760" rx="245" ry="36" fill="#27231f" opacity="0.14"/>
-    <path d="M190 430h420v290a30 30 0 0 1-30 30H220a30 30 0 0 1-30-30Z" fill="url(#m16)"/>
-    <ellipse cx="400" cy="430" rx="210" ry="66" fill="#eadfbf" fill-opacity="0.35"/>
-    <ellipse cx="400" cy="430" rx="210" ry="66" fill="url(#m16)" fill-opacity="0.55"/>
-    <g stroke="#eadfbf" stroke-opacity="0.4" stroke-width="9" fill="none">
+    <path d="M190 430h420v290a30 30 0 0 1-30 30H220a30 30 0 0 1-30-30Z" fill="url(#m19)"/>
+    <ellipse cx="400" cy="430" rx="210" ry="66" fill="#e3d9bd" fill-opacity="0.35"/>
+    <ellipse cx="400" cy="430" rx="210" ry="66" fill="url(#m19)" fill-opacity="0.55"/>
+    <g stroke="#e3d9bd" stroke-opacity="0.4" stroke-width="9" fill="none">
       <path d="M190 560h420"/>
       <path d="M190 650h420"/>
     </g>
-    <g fill="#eadfbf" fill-opacity="0.5">
+    <g fill="#e3d9bd" fill-opacity="0.5">
       <circle cx="330" cy="415" r="16"/>
       <circle cx="400" cy="400" r="16"/>
       <circle cx="470" cy="415" r="16"/>

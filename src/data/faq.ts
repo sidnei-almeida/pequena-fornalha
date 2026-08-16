@@ -21,7 +21,7 @@ export const gruposFaq: GrupoFaq[] = [
       {
         pergunta: 'Qual o melhor horário para chegar?',
         resposta:
-          'Quinta e sexta a fornada sai por volta das 16h, e nas duas primeiras horas tem de tudo. Sábado o movimento é maior e itens como a focaccia e a rosca de canela costumam acabar antes das 11h.',
+          'Quinta e sexta a fornada sai por volta das 16h, e nas duas primeiras horas tem de tudo. Sábado o movimento é maior e o pão caseiro, as cucas e os sonhos costumam acabar antes das 11h.',
       },
       {
         pergunta: 'Como pago?',
@@ -94,7 +94,7 @@ export const gruposFaq: GrupoFaq[] = [
       {
         pergunta: 'Tem opção vegana?',
         resposta:
-          'Sim. O Sourdough Clássico, o Integral Rústico, o Centeio com Sementes, a Ciabatta e a Focaccia de Alecrim não levam ingrediente de origem animal. Os itens estão marcados no cardápio.',
+          'Sim, na linha de fermentação natural: o Sourdough Clássico, o Integral Rústico de Levain e o Centeio com Sementes não levam ingrediente de origem animal. Os pães coloniais levam leite, ovos e banha. Os itens veganos estão marcados no cardápio.',
       },
       {
         pergunta: 'Onde vejo os alérgenos?',

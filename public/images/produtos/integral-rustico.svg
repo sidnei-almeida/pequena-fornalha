@@ -1,20 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Integral Rústico — foto em breve">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Integral Rústico de Levain — foto em breve">
   <defs>
-    <linearGradient id="f2" x1="0" y1="0" x2="0.4" y2="1">
-      <stop offset="0" stop-color="#d9cfae"/>
+    <linearGradient id="f15" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#cfd0bc"/>
       <stop offset="1" stop-color="#27231f" stop-opacity="0.18"/>
     </linearGradient>
-    <radialGradient id="m2" cx="0.38" cy="0.3" r="0.85">
-      <stop offset="0" stop-color="#8f5137"/>
-      <stop offset="1" stop-color="#5a3429"/>
+    <radialGradient id="m15" cx="0.38" cy="0.3" r="0.85">
+      <stop offset="0" stop-color="#6b6b57"/>
+      <stop offset="1" stop-color="#4b4b3d"/>
     </radialGradient>
   </defs>
 
-  <rect width="800" height="1000" fill="url(#f2)"/>
+  <rect width="800" height="1000" fill="url(#f15)"/>
   
     <ellipse cx="400" cy="700" rx="280" ry="38" fill="#27231f" opacity="0.14"/>
-    <ellipse cx="400" cy="580" rx="285" ry="180" fill="url(#m2)"/>
-    <g stroke="#d9cfae" stroke-opacity="0.5" stroke-width="10" stroke-linecap="round" fill="none">
+    <ellipse cx="400" cy="580" rx="285" ry="180" fill="url(#m15)"/>
+    <g stroke="#cfd0bc" stroke-opacity="0.5" stroke-width="10" stroke-linecap="round" fill="none">
       <path d="M210 570q70-35 150-60"/>
       <path d="M250 655q70-35 150-60"/>
       <path d="M290 740q70-35 150-60" opacity="0.9"/>

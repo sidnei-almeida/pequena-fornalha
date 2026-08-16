@@ -341,7 +341,7 @@ const postFoto = ({ nome, cor, imagem, titulo, apoio }) =>
     </body>`,
   });
 
-const carroChefe = produtos.find((p) => p.slug === 'sourdough-classico');
+const carroChefe = produtos.find((p) => p.tag === 'Carro-chefe') ?? produtos[0];
 
 postFoto({
   nome: 'post-07-foto-produto',

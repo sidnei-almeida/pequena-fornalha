@@ -18,9 +18,9 @@ export const whatsappUrl = (message: string = WHATSAPP_MESSAGE) =>
 
 export const site = {
   name: 'Pequena Fornalha',
-  tagline: 'Pães artesanais de fermentação natural',
+  tagline: 'Pães coloniais e fermentação natural',
   description:
-    'Padaria artesanal em Caxias do Sul, RS. Pães de fermentação natural, feitos à mão e assados em pequenas fornadas. Retirada na garagem, pedidos pelo WhatsApp.',
+    'Padaria caseira em Caxias do Sul, RS. Pão colonial, cuca, sonho e pães de fermentação natural, assados em pequenas fornadas. Retirada na garagem, pedidos pelo WhatsApp.',
   city: 'Caxias do Sul',
   state: 'RS',
   neighborhood: 'Bairro Jardim América',
