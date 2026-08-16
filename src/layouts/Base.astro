@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { schedule, site } from '../data/site';
+import { heroVideo, schedule, site } from '../data/site';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -10,6 +10,9 @@ interface Props {
   /** Header flutuando sobre um hero escuro (só a home usa). */
   headerSobreposto?: boolean;
 }
+
+// A imagem do hero é a primeira coisa que o visitante vê: pedimos ela antes de
+// o navegador chegar na tag <img>. Só faz sentido na página que tem hero.
 
 const {
   title = `${site.name} | ${site.tagline}`,
@@ -46,6 +49,12 @@ const jsonLd = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="canonical" href={canonical} />
+    {
+      headerSobreposto && (
+        <link rel="preload" as="image" href={heroVideo.poster} fetchpriority="high" />
+      )
+    }
+
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

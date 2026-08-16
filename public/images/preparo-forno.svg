@@ -8,12 +8,6 @@
       <stop offset="0" stop-color="#b06a44"/>
       <stop offset="1" stop-color="#3a2a20"/>
     </radialGradient>
-    <filter id="poeira3">
-      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" result="n"/>
-      <feColorMatrix in="n" type="saturate" values="0"/>
-      <feComponentTransfer><feFuncA type="linear" slope="0.22"/></feComponentTransfer>
-      <feComposite operator="in" in2="SourceGraphic"/>
-    </filter>
   </defs>
   <rect width="1600" height="1100" fill="url(#parede3)"/>
   
@@ -33,7 +27,6 @@
       <path d="M870 676q46-22 100-34"/>
     </g>
   </g>
-  <rect width="1600" height="1100" filter="url(#poeira3)" fill="#f1ebd5" opacity="0.5"/>
   <text x="800" y="1054" text-anchor="middle"
         font-family="Montserrat, Helvetica, Arial, sans-serif"
         font-size="28" letter-spacing="8" fill="#f1ebd5" fill-opacity="0.65">FOTO EM BREVE</text>

@@ -149,7 +149,6 @@
 
 /* Massa crescendo: cada linha sobe de dentro do próprio corte. */
 .anima [data-crescer] > * {
-  display: block;
   /* a folga entra no corte e sai no layout: vírgula e itálico não são decepados */
   padding-block-end: 0.14em;
   margin-block-end: -0.14em;
@@ -159,44 +158,12 @@
 }
 
 .anima [data-crescer] > * > span {
-  display: block;
   transform: translateY(105%);
   transition: transform 1.1s var(--curva);
   transition-delay: var(--atraso-linha, 0ms);
 }
 
 .anima [data-crescer].is-visible > * > span {
-  transform: none;
-}
-
-/* Boca do forno abrindo: a cortina sai de cima da imagem. */
-.anima [data-fornada] {
-  position: relative;
-  overflow: hidden;
-}
-
-.anima [data-fornada]::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  /* a cortina precisa ter a cor do fundo em volta, senão pisca creme */
-  background-color: var(--cortina, var(--color-creme));
-  transform-origin: top;
-  transition: transform 1.2s var(--curva);
-}
-
-.anima [data-fornada].is-visible::after {
-  transform: scaleY(0);
-}
-
-/* A imagem por baixo se acomoda enquanto a cortina sobe. */
-.anima [data-fornada] > img {
-  transform: scale(1.06);
-  transition: transform 1.6s var(--curva);
-}
-
-.anima [data-fornada].is-visible > img {
   transform: none;
 }
 
@@ -223,22 +190,6 @@
     transform-box: fill-box;
     transform-origin: 50% 80%;
     animation: brasa 4.5s ease-in-out infinite;
-  }
-}
-
-/* O fundo do hero se aproxima devagar, do jeito que o forno esquenta. */
-@media (prefers-reduced-motion: no-preference) {
-  @keyframes aproximar {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(1.08);
-    }
-  }
-
-  .hero-fundo {
-    animation: aproximar 24s ease-out forwards;
   }
 }
 

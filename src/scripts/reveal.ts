@@ -5,8 +5,6 @@
  *   [data-reveal]        sobe e aparece — o gesto básico
  *   [data-crescer]       cada linha sobe de dentro de um corte, como massa
  *                        crescendo na forma
- *   [data-fornada]       uma cortina sai de cima da imagem, como quem abre a
- *                        boca do forno
  *
  * A marca `anima` só entra no <html> quando há JavaScript e o sistema não pede
  * menos movimento. Sem ela, o CSS não esconde nada e a página aparece pronta —
@@ -35,7 +33,7 @@ if (querMenosMovimento || !suportado) {
     { rootMargin: '0px 0px -12% 0px', threshold: 0.12 },
   );
 
-  const alvos = document.querySelectorAll<HTMLElement>('[data-reveal], [data-crescer], [data-fornada]');
+  const alvos = document.querySelectorAll<HTMLElement>('[data-reveal], [data-crescer]');
 
   // Cada linha do texto que "cresce" recebe seu próprio atraso, em cascata.
   document.querySelectorAll<HTMLElement>('[data-crescer]').forEach((bloco) => {

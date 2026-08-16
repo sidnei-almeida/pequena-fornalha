@@ -5,6 +5,9 @@
  *   conforme a `forma` declarada em src/data/produtos.ts.
  * - Duas cenas largas (hero e oficina) para as páginas.
  *
+ * Sem filtro de ruído de propósito: `feTurbulence` em tela cheia custa
+ * centenas de milissegundos para rasterizar e trava a rolagem.
+ *
  * Rode com `node scripts/gerar-placeholders.mjs`. Apague este arquivo quando
  * as fotos reais entrarem no lugar.
  */
@@ -98,17 +101,10 @@ const cartao = (produto, i) => {
       <stop offset="0" stop-color="${massa}"/>
       <stop offset="1" stop-color="${casca}"/>
     </radialGradient>
-    <filter id="g${id}">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" result="n"/>
-      <feColorMatrix in="n" type="saturate" values="0"/>
-      <feComponentTransfer><feFuncA type="linear" slope="0.16"/></feComponentTransfer>
-      <feComposite operator="in" in2="SourceGraphic"/>
-    </filter>
   </defs>
 
   <rect width="800" height="1000" fill="url(#f${id})"/>
   ${desenho}
-  <rect width="800" height="1000" filter="url(#g${id})" fill="#27231f" opacity="0.5"/>
 
   <text x="400" y="920" text-anchor="middle" font-family="Montserrat, Helvetica, Arial, sans-serif"
         font-size="24" letter-spacing="7" fill="#27231f" fill-opacity="0.5">FOTO EM BREVE</text>
@@ -133,12 +129,6 @@ const cena = ({ fundo, massa, casca }, legenda, selo = true) => `<svg xmlns="htt
       <stop offset="0.55" stop-color="${massa}"/>
       <stop offset="1" stop-color="${casca}" stop-opacity="0"/>
     </radialGradient>
-    <filter id="grao">
-      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" result="n"/>
-      <feColorMatrix in="n" type="saturate" values="0"/>
-      <feComponentTransfer><feFuncA type="linear" slope="0.2"/></feComponentTransfer>
-      <feComposite operator="in" in2="SourceGraphic"/>
-    </filter>
   </defs>
 
   <rect width="1600" height="1100" fill="url(#bg)"/>
@@ -159,7 +149,6 @@ const cena = ({ fundo, massa, casca }, legenda, selo = true) => `<svg xmlns="htt
     <ellipse cx="0" cy="250" rx="250" ry="46" fill="#27231f" opacity="0.5"/>
   </g>
 
-  <rect width="1600" height="1100" filter="url(#grao)" fill="#27231f" opacity="0.55"/>
   ${
     selo
       ? `<text x="800" y="1035" text-anchor="middle" font-family="Montserrat, Helvetica, Arial, sans-serif"
@@ -195,16 +184,9 @@ const molduraCena = (largura, altura, id, { fundo, massa, casca }, conteudo, leg
       <stop offset="0" stop-color="${massa}"/>
       <stop offset="1" stop-color="${casca}"/>
     </radialGradient>
-    <filter id="poeira${id}">
-      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" result="n"/>
-      <feColorMatrix in="n" type="saturate" values="0"/>
-      <feComponentTransfer><feFuncA type="linear" slope="0.22"/></feComponentTransfer>
-      <feComposite operator="in" in2="SourceGraphic"/>
-    </filter>
   </defs>
   <rect width="${largura}" height="${altura}" fill="url(#parede${id})"/>
   ${conteudo}
-  <rect width="${largura}" height="${altura}" filter="url(#poeira${id})" fill="#f1ebd5" opacity="0.5"/>
   <text x="${largura / 2}" y="${altura - 46}" text-anchor="middle"
         font-family="Montserrat, Helvetica, Arial, sans-serif"
         font-size="${Math.round(largura / 58)}" letter-spacing="8" fill="#f1ebd5" fill-opacity="0.65">FOTO EM BREVE</text>
