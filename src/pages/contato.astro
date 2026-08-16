@@ -1,0 +1,139 @@
+---
+import Base from '../layouts/Base.astro';
+import CabecalhoPagina from '../components/CabecalhoPagina.astro';
+import LocalHorarios from '../components/LocalHorarios.astro';
+import IconeWhatsApp from '../components/IconeWhatsApp.astro';
+import { WHATSAPP_DISPLAY, WHATSAPP_NUMBER, site } from '../data/site';
+
+const assuntos = [
+  'Dúvida geral',
+  'Encomenda',
+  'Bolo de festa',
+  'Pedido grande ou evento',
+  'Alérgenos e ingredientes',
+  'Imprensa e parcerias',
+];
+---
+
+<Base
+  title="Contato | Pequena Fornalha"
+  description="Fale com a Pequena Fornalha pelo WhatsApp, Instagram ou e-mail. Endereço, horários de retirada e formulário de mensagem."
+>
+  <CabecalhoPagina
+    eyebrow="Fale com a gente"
+    titulo="Contato"
+    resumo="A maior parte das dúvidas já está nas perguntas frequentes. Para o resto, o WhatsApp é o caminho mais rápido."
+  />
+
+  <section class="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20">
+    <div class="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-20">
+      <div>
+        <h2 class="eyebrow text-terracota">Canais</h2>
+        <ul class="mt-6 flex flex-col divide-y divide-carvao/15 border-y border-carvao/15">
+          <li class="py-5">
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noopener"
+              class="flex items-center gap-4 hover:text-terracota"
+            >
+              <IconeWhatsApp class="h-6 w-6 text-terracota" />
+              <span>
+                <span class="block font-serif text-2xl">WhatsApp</span>
+                <span class="eyebrow text-carvao/50">{WHATSAPP_DISPLAY}</span>
+              </span>
+            </a>
+          </li>
+          <li class="py-5">
+            <a href={site.instagram} target="_blank" rel="noopener" class="block hover:text-terracota">
+              <span class="block font-serif text-2xl">Instagram</span>
+              <span class="eyebrow text-carvao/50">{site.instagramHandle}, a fornada da semana</span>
+            </a>
+          </li>
+          <li class="py-5">
+            <a href={`mailto:${site.email}`} class="block hover:text-terracota">
+              <span class="block font-serif text-2xl">E-mail</span>
+              <span class="eyebrow text-carvao/50">{site.email}</span>
+            </a>
+          </li>
+        </ul>
+
+        <p class="mt-8 leading-relaxed text-carvao/70">
+          Respondemos entre as fornadas. Segunda e terça não há atendimento.
+        </p>
+      </div>
+
+      <!-- O formulário não envia nada para servidor: monta a mensagem e abre o WhatsApp. -->
+      <div class="rounded-[2px] bg-sage/25 p-8 sm:p-10">
+        <h2 class="eyebrow text-melaco">Montar mensagem</h2>
+        <p class="mt-4 leading-relaxed text-carvao/75">
+          Preencha e a gente abre o WhatsApp com o texto pronto. Nada é enviado para
+          nenhum servidor. O site é estático.
+        </p>
+
+        <form id="form-contato" class="mt-8 flex flex-col gap-5">
+          <div class="flex flex-col gap-2">
+            <label for="nome" class="eyebrow text-carvao/60">Seu nome</label>
+            <input
+              id="nome"
+              name="nome"
+              type="text"
+              required
+              autocomplete="name"
+              class="rounded-[2px] border border-carvao/25 bg-creme px-4 py-3 outline-none focus:border-terracota"
+            />
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label for="assunto" class="eyebrow text-carvao/60">Assunto</label>
+            <select
+              id="assunto"
+              name="assunto"
+              class="campo-select rounded-[2px] border border-carvao/25 bg-creme px-4 py-3 outline-none focus:border-terracota"
+            >
+              {assuntos.map((assunto) => <option value={assunto}>{assunto}</option>)}
+            </select>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label for="mensagem" class="eyebrow text-carvao/60">Mensagem</label>
+            <textarea
+              id="mensagem"
+              name="mensagem"
+              rows="5"
+              required
+              class="rounded-[2px] border border-carvao/25 bg-creme px-4 py-3 outline-none focus:border-terracota"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center gap-3 rounded-[2px] bg-carvao px-8 py-4 text-creme transition-colors duration-300 hover:bg-terracota"
+          >
+            <IconeWhatsApp class="h-4 w-4" />
+            <span class="eyebrow">Abrir no WhatsApp</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <LocalHorarios />
+
+  <script is:inline define:vars={{ numero: WHATSAPP_NUMBER }}>
+    const form = document.getElementById('form-contato');
+
+    form?.addEventListener('submit', (evento) => {
+      evento.preventDefault();
+      const dados = new FormData(form);
+      const texto = [
+        `Olá! Sou ${dados.get('nome')}.`,
+        `Assunto: ${dados.get('assunto')}.`,
+        '',
+        String(dados.get('mensagem') ?? ''),
+      ].join('\n');
+
+      window.open(`https://wa.me/${numero}?text=${encodeURIComponent(texto)}`, '_blank', 'noopener');
+    });
+  </script>
+</Base>

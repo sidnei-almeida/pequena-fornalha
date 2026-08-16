@@ -1,0 +1,64 @@
+---
+import Separador from './Separador.astro';
+import { imagemProduto, type Produto } from '../data/produtos';
+
+interface Props {
+  produto: Produto;
+  /** Atraso da animação de entrada, em ms. */
+  atraso?: number;
+}
+
+const { produto, atraso = 0 } = Astro.props;
+const vegano = produto.restricoes?.includes('Vegano');
+---
+
+<article class="group flex flex-col" data-reveal data-reveal-delay={atraso}>
+  <a href={`/produto/${produto.slug}`} class="relative block overflow-hidden rounded-[2px] bg-linho">
+    <img
+      src={imagemProduto(produto)}
+      alt={produto.nome}
+      width="800"
+      height="1000"
+      loading="lazy"
+      decoding="async"
+      class="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+    />
+    {
+      produto.tag && (
+        <span class="eyebrow absolute top-4 left-4 rounded-[2px] bg-creme/95 px-3 py-1.5 text-carvao">
+          {produto.tag}
+        </span>
+      )
+    }
+    <span
+      class="eyebrow absolute right-4 bottom-4 translate-y-3 rounded-[2px] bg-carvao px-4 py-2 text-creme opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+    >
+      Ver detalhes
+    </span>
+  </a>
+
+  <div class="mt-5 flex items-baseline justify-between gap-4">
+    <h3 class="font-serif text-2xl">
+      <a href={`/produto/${produto.slug}`} class="hover:text-terracota">{produto.nome}</a>
+    </h3>
+    <span class="font-sans text-sm font-semibold whitespace-nowrap text-terracota">{produto.preco}</span>
+  </div>
+
+  <p class="mt-2 text-sm leading-relaxed text-carvao/70">{produto.descricao}</p>
+
+  <p class="eyebrow mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-carvao/45">
+    <span>{produto.peso}</span>
+    {vegano && (
+      <span class="flex items-center gap-2 text-sage">
+        <Separador />
+        Vegano
+      </span>
+    )}
+    {produto.prazo && (
+      <span class="flex items-center gap-2 text-melaco">
+        <Separador />
+        {produto.prazo} de antecedência
+      </span>
+    )}
+  </p>
+</article>

@@ -1,0 +1,36 @@
+---
+import CardProduto from './CardProduto.astro';
+import { categorias, porCategoria, type Produto } from '../data/produtos';
+
+interface Props {
+  produtos: Produto[];
+}
+
+const { produtos } = Astro.props;
+const grupos = categorias
+  .map((categoria) => ({ categoria, itens: porCategoria(produtos, categoria.id) }))
+  .filter((grupo) => grupo.itens.length > 0);
+---
+
+<div class="mx-auto max-w-[1400px] px-5 sm:px-8">
+  {
+    grupos.map(({ categoria, itens }) => (
+      <section id={categoria.id} class="border-b border-carvao/15 py-16 last:border-b-0 sm:py-20">
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <h2 class="font-sans text-[clamp(1.6rem,3.5vw,2.6rem)] leading-none font-bold tracking-[-0.02em] uppercase">
+            {categoria.nome}
+          </h2>
+          <p class="max-w-sm font-serif text-lg leading-relaxed text-carvao/70">
+            {categoria.descricao}
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+          {itens.map((produto, indice) => (
+            <CardProduto produto={produto} atraso={(indice % 3) * 90} />
+          ))}
+        </div>
+      </section>
+    ))
+  }
+</div>

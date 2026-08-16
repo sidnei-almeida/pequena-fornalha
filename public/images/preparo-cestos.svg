@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="Cestos de fermentação empilhados">
+  <defs>
+    <linearGradient id="parede2" x1="0.1" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#c9cbb4"/>
+      <stop offset="1" stop-color="#3a3830"/>
+    </linearGradient>
+    <radialGradient id="massa2" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#8d8a6f"/>
+      <stop offset="1" stop-color="#3a3830"/>
+    </radialGradient>
+    <filter id="poeira2">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" result="n"/>
+      <feColorMatrix in="n" type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.22"/></feComponentTransfer>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1000" height="1250" fill="url(#parede2)"/>
+  
+  <g opacity="0.2" stroke="#f1ebd5" stroke-width="6">
+    <path d="M0 300h1000M0 720h1000"/>
+  </g>
+  <g fill="#27231f" opacity="0.25">
+    <ellipse cx="500" cy="1120" rx="330" ry="42"/>
+  </g>
+  
+    <ellipse cx="500" cy="1010" rx="300" ry="110" fill="url(#massa2)"/>
+    <ellipse cx="500" cy="1010" rx="282" ry="102" fill="none" stroke="#c9cbb4" stroke-opacity="0.28" stroke-width="6"/><ellipse cx="500" cy="1010" rx="256" ry="90" fill="none" stroke="#c9cbb4" stroke-opacity="0.28" stroke-width="6"/><ellipse cx="500" cy="1010" rx="230" ry="78" fill="none" stroke="#c9cbb4" stroke-opacity="0.28" stroke-width="6"/><ellipse cx="500" cy="1010" rx="204" ry="66" fill="none" stroke="#c9cbb4" stroke-opacity="0.28" stroke-width="6"/><ellipse cx="500" cy="1010" rx="178" ry="54" fill="none" stroke="#c9cbb4" stroke-opacity="0.28" stroke-width="6"/>
+  
+    <ellipse cx="470" cy="830" rx="265" ry="96" fill="url(#massa2)"/>
+    <ellipse cx="470" cy="830" rx="247" ry="88" fill="none" stroke="#c9cbb4" stroke-opacity="0.28" stroke-width="6"/><ellipse cx="470" cy="830" rx="221" ry="76" fill="none" stroke="#c9cbb4" stroke-opacity="0.28" stroke-width="6"/><ellipse cx="470" cy="830" rx="195" ry="64" fill="none" stroke="#c9cbb4" stroke-opacity="0.28" stroke-width="6"/><ellipse cx="470" cy="830" rx="169" ry="52" fill="none" stroke="#c9cbb4" stroke-opacity="0.28" stroke-width="6"/><ellipse cx="470" cy="830" rx="143" ry="40" fill="none" stroke="#c9cbb4" stroke-opacity="0.28" stroke-width="6"/>
+  
+    <ellipse cx="520" cy="660" rx="225" ry="82" fill="url(#massa2)"/>
+    <ellipse cx="520" cy="660" rx="207" ry="74" fill="none" stroke="#c9cbb4" stroke-opacity="0.28" stroke-width="6"/><ellipse cx="520" cy="660" rx="181" ry="62" fill="none" stroke="#c9cbb4" stroke-opacity="0.28" stroke-width="6"/><ellipse cx="520" cy="660" rx="155" ry="50" fill="none" stroke="#c9cbb4" stroke-opacity="0.28" stroke-width="6"/><ellipse cx="520" cy="660" rx="129" ry="38" fill="none" stroke="#c9cbb4" stroke-opacity="0.28" stroke-width="6"/><ellipse cx="520" cy="660" rx="103" ry="26" fill="none" stroke="#c9cbb4" stroke-opacity="0.28" stroke-width="6"/>
+  <ellipse cx="520" cy="640" rx="150" ry="52" fill="#f1ebd5" opacity="0.45"/>
+  <rect width="1000" height="1250" filter="url(#poeira2)" fill="#f1ebd5" opacity="0.5"/>
+  <text x="500" y="1204" text-anchor="middle"
+        font-family="Montserrat, Helvetica, Arial, sans-serif"
+        font-size="17" letter-spacing="8" fill="#f1ebd5" fill-opacity="0.65">FOTO EM BREVE</text>
+</svg>

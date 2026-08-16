@@ -1,0 +1,72 @@
+---
+import Logomarca from './Logomarca.astro';
+import IconeWhatsApp from './IconeWhatsApp.astro';
+import { footerLinks, site, whatsappUrl } from '../data/site';
+
+const ano = new Date().getFullYear();
+---
+
+<footer class="bg-carvao text-creme">
+  <div class="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 sm:py-24">
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1fr)]">
+      <div>
+        <a href="/" class="flex items-center gap-4">
+          <Logomarca class="h-16 w-auto" />
+          <span class="leading-[1.05]">
+            <span class="block text-lg font-bold tracking-[0.16em] uppercase">Pequena</span>
+            <span class="block text-lg font-bold tracking-[0.16em] uppercase">Fornalha</span>
+          </span>
+        </a>
+        <p class="eyebrow mt-6 text-creme/50">{site.tagline}</p>
+      </div>
+
+      <nav aria-label="Rodapé">
+        <h2 class="eyebrow text-creme/50">Navegar</h2>
+        <ul class="mt-5 flex flex-col gap-3">
+          {
+            footerLinks.map((link) => (
+              <li>
+                <a href={link.href} class="font-serif text-xl hover:text-terracota">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="eyebrow text-creme/50">Contato</h2>
+        <ul class="mt-5 flex flex-col gap-3 font-serif text-xl">
+          <li>
+            <a
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-2 hover:text-terracota"
+            >
+              <IconeWhatsApp class="h-5 w-5" />
+              WhatsApp
+            </a>
+          </li>
+          <li>
+            <a href={site.instagram} target="_blank" rel="noopener" class="hover:text-terracota">
+              {site.instagramHandle}
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${site.email}`} class="hover:text-terracota">{site.email}</a>
+          </li>
+        </ul>
+        <p class="mt-5 text-sm leading-relaxed text-creme/55">
+          {site.neighborhood}, {site.city}/{site.state}<br />
+          {site.addressNote}
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-16 border-t border-creme/15 pt-8 text-xs text-creme/45">
+      <p>© {ano} {site.name}. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>

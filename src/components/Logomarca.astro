@@ -1,0 +1,70 @@
+---
+/**
+ * Símbolo da marca: boca do forno, chama e pão.
+ *
+ * Traço grosso e chama de duas línguas, para ter peso e cara de fogo sem voltar
+ * a ser o desenho carregado do logo original (brand/logo-original.jpg) — a
+ * espiga de trigo continua fora. Entre o arco e o pão fica uma folga fina
+ * vazada (1.8), que separa as duas formas nos tamanhos pequenos sem virar um
+ * contorno grosso em volta do pão.
+ *
+ * Usa `currentColor` e vaza os cortes do pão por máscara, então funciona igual
+ * sobre fundo claro ou escuro.
+ */
+interface Props {
+  class?: string;
+  title?: string;
+}
+
+const { class: className = '', title = 'Pequena Fornalha' } = Astro.props;
+const id = Math.random().toString(36).slice(2, 9);
+---
+
+<svg
+  viewBox="0 0 100 88"
+  fill="none"
+  role={title ? 'img' : 'presentation'}
+  aria-label={title || undefined}
+  aria-hidden={title ? undefined : 'true'}
+  class={className}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <!-- Folga fina do arco em volta do pão: 1.8 de respiro, só o suficiente -->
+    <mask id={`arco-${id}`}>
+      <rect x="-10" y="-10" width="120" height="120" fill="#fff"></rect>
+      <ellipse cx="50" cy="71.5" rx="29.3" ry="14.8" fill="#000"></ellipse>
+    </mask>
+    <!-- Vaza os dois cortes do pão -->
+    <mask id={`pao-${id}`}>
+      <ellipse cx="50" cy="71.5" rx="27.5" ry="13" fill="#fff"></ellipse>
+      <path
+        d="M36 68.5c4.2-4.4 9-7 14.4-8M53 64c4.4-2.4 9-3.8 13.8-4.2"
+        stroke="#000"
+        stroke-width="3.2"
+        stroke-linecap="round"></path>
+    </mask>
+  </defs>
+
+  <!-- Boca do forno -->
+  <path
+    d="M24 75V40c0-14.4 11.6-26 26-26s26 11.6 26 26v35"
+    stroke="currentColor"
+    stroke-width="10.5"
+    stroke-linecap="butt"
+    mask={`url(#arco-${id})`}
+  />
+
+  <!-- Fogo: língua principal e uma menor ao lado -->
+  <g transform="translate(50 58) scale(1.12) translate(-50 -58)" fill="currentColor">
+    <path
+      d="M50 26c6 7.5 9.2 11.4 9.2 17.3 0 5.2-4.1 9.2-9.2 9.2s-9.2-4-9.2-9.2c0-3.9 2-6.4 3.9-8.9.8 3.7 2.2 5.5 3.9 6.2-1.7-5.2-1-10.2 1.4-14.6Z"
+    ></path>
+    <path
+      d="M41.6 33.8c-1 3.4-.8 6.2.6 8.6-3-1.4-4.6-4-4.2-7 .3-2.2 1.6-4.3 4-6.3-.5 1.6-.6 3.1-.4 4.7Z"
+    ></path>
+  </g>
+
+  <!-- Pão -->
+  <ellipse cx="50" cy="71.5" rx="27.5" ry="13" fill="currentColor" mask={`url(#pao-${id})`} />
+</svg>

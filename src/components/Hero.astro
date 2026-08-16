@@ -1,0 +1,80 @@
+---
+import Separador from './Separador.astro';
+import { heroVideo, site } from '../data/site';
+---
+
+<section class="relative flex min-h-[100svh] items-end overflow-hidden bg-carvao text-creme">
+  {
+    heroVideo.ativo ? (
+      <video
+        id="video-hero"
+        class="absolute inset-0 h-full w-full object-cover opacity-85"
+        poster={heroVideo.poster}
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-hidden="true"
+        tabindex="-1"
+      >
+        <source src={heroVideo.webm} type="video/webm" />
+        <source src={heroVideo.mp4} type="video/mp4" />
+      </video>
+    ) : (
+      <img
+        src={heroVideo.poster}
+        alt=""
+        aria-hidden="true"
+        class="absolute inset-0 h-full w-full object-cover opacity-85"
+      />
+    )
+  }
+
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-carvao via-carvao/35 to-carvao/55"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto w-full max-w-[1400px] px-5 pt-28 pb-12 sm:px-8 sm:pt-32 sm:pb-20">
+    <p class="eyebrow mb-6 flex items-center gap-2 text-creme/70 sm:mb-8" data-reveal>
+      {site.city}
+      <Separador />
+      {site.state}
+      <Separador />
+      desde 2024
+    </p>
+
+    <h1
+      class="max-w-[16ch] font-sans text-[clamp(1.95rem,8.4vw,7.5rem)] leading-[0.95] font-bold tracking-[-0.02em] uppercase"
+    >
+      <span class="block" data-reveal data-reveal-delay="60">Feito devagar,</span>
+      <span class="block" data-reveal data-reveal-delay="140">feito à mão,</span>
+      <span class="block font-serif text-terracota normal-case italic" data-reveal data-reveal-delay="220">
+        feito pra você.
+      </span>
+    </h1>
+
+    <p
+      class="mt-8 max-w-lg border-t border-creme/20 pt-6 font-serif text-lg leading-relaxed text-creme/85 sm:mt-10 sm:pt-8 sm:text-2xl"
+      data-reveal
+    >
+      Padaria de fermentação natural em {site.city}. Fornadas pequenas, três
+      dias por semana.
+    </p>
+  </div>
+</section>
+
+{
+  heroVideo.ativo && (
+    <script>
+      // Quem pediu menos movimento fica só com o poster.
+      const video = document.getElementById('video-hero') as HTMLVideoElement | null;
+      if (video && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        video.removeAttribute('autoplay');
+        video.pause();
+      }
+    </script>
+  )
+}

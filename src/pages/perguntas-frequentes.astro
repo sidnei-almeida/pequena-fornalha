@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import CabecalhoPagina from '../components/CabecalhoPagina.astro';
+import Acordeao from '../components/Acordeao.astro';
+import IconeWhatsApp from '../components/IconeWhatsApp.astro';
+import Botao from '../components/Botao.astro';
+import { gruposFaq } from '../data/faq';
+import { whatsappUrl } from '../data/site';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: gruposFaq.flatMap((grupo) =>
+    grupo.perguntas.map((item) => ({
+      '@type': 'Question',
+      name: item.pergunta,
+      acceptedAnswer: { '@type': 'Answer', text: item.resposta },
+    })),
+  ),
+};
+---
+
+<Base
+  title="Perguntas frequentes | Pequena Fornalha"
+  description="Como funciona a retirada, os prazos de encomenda, pagamento, validade do pão e informações de alérgenos."
+>
+  <CabecalhoPagina
+    eyebrow="Antes de perguntar"
+    titulo="Perguntas frequentes"
+    resumo="Reunimos aqui o que mais chega no WhatsApp. Se sua dúvida não estiver na lista, é só chamar."
+  >
+    <nav aria-label="Seções" class="mt-8 flex flex-wrap gap-3">
+      {
+        gruposFaq.map((grupo) => (
+          <a
+            href={`#${grupo.id}`}
+            class="eyebrow rounded-[2px] border border-carvao/25 px-5 py-3 transition-colors hover:bg-carvao hover:text-creme"
+          >
+            {grupo.titulo}
+          </a>
+        ))
+      }
+    </nav>
+  </CabecalhoPagina>
+
+  <div class="mx-auto max-w-[1400px] px-5 sm:px-8">
+    {
+      gruposFaq.map((grupo) => (
+        <section id={grupo.id} class="py-14 sm:py-20">
+          <h2 class="mb-8 font-sans text-[clamp(1.6rem,3.5vw,2.6rem)] leading-none font-bold tracking-[-0.02em] uppercase">
+            {grupo.titulo}
+          </h2>
+          <Acordeao perguntas={grupo.perguntas} />
+        </section>
+      ))
+    }
+  </div>
+
+  <section class="bg-carvao text-creme">
+    <div class="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20">
+      <div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+        <p class="max-w-xl font-serif text-2xl leading-relaxed sm:text-3xl">
+          Não achou o que procurava?
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <Botao href={whatsappUrl('Olá! Tenho uma dúvida sobre os pães.')} externo variante="claro">
+            <IconeWhatsApp slot="icone" class="h-4 w-4" />
+            Fazer pedido
+          </Botao>
+          <Botao href="/contato" variante="contorno" seta>Outros contatos</Botao>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+</Base>

@@ -1,0 +1,139 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Bastidores from '../components/Bastidores.astro';
+import LocalHorarios from '../components/LocalHorarios.astro';
+import Logomarca from '../components/Logomarca.astro';
+import { site } from '../data/site';
+
+const numeros = [
+  { valor: '24h', rotulo: 'de fermentação' },
+  { valor: '3', rotulo: 'fornadas por semana' },
+  { valor: '4', rotulo: 'ingredientes no pão clássico' },
+];
+
+const portas = [
+  {
+    href: '/pronta-entrega',
+    eyebrow: 'Sem encomendar',
+    titulo: 'Pronta entrega',
+    texto:
+      'O que sai do forno na fornada da semana e fica no balcão para você chegar e levar, enquanto durar.',
+    imagem: '/images/produtos/sourdough-classico.svg',
+  },
+  {
+    href: '/encomendas',
+    eyebrow: 'Com antecedência',
+    titulo: 'Encomendas',
+    texto:
+      'Pães garantidos, bolos e itens especiais, combinados pelo WhatsApp com alguns dias de antecedência.',
+    imagem: '/images/produtos/bolo-de-festa.svg',
+  },
+];
+---
+
+<Base headerSobreposto>
+  <Hero />
+
+  <!-- A história da casa: o miolo desta página -->
+  <section class="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 sm:py-28">
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:gap-24">
+      <div data-reveal>
+        <p class="eyebrow text-terracota">A padaria</p>
+        <h2
+          class="mt-4 font-sans text-[clamp(2rem,5.5vw,4rem)] leading-[0.95] font-bold tracking-[-0.02em] uppercase"
+        >
+          Uma garagem,<br />um forno,<br />muito tempo
+        </h2>
+      </div>
+
+      <div class="flex flex-col gap-6 font-serif text-xl leading-relaxed text-carvao/80" data-reveal>
+        <p>
+          A Pequena Fornalha é uma padaria de fermentação natural em {site.city},
+          no {site.state}. Assamos tudo do zero, em fornadas pequenas, num forno que
+          cabe na garagem de casa.
+        </p>
+        <p>
+          O cardápio muda com a estação, mas sempre tem o sourdough clássico, um
+          integral e alguma coisa doce.
+        </p>
+
+        <dl class="mt-4 grid grid-cols-3 gap-6 border-t border-carvao/15 pt-8">
+          {
+            numeros.map((numero) => (
+              <div>
+                <dt class="font-sans text-3xl font-bold tracking-tight text-terracota sm:text-4xl">
+                  {numero.valor}
+                </dt>
+                <dd class="eyebrow mt-2 text-carvao/55">{numero.rotulo}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <Bastidores />
+
+  <!--
+    Divisória + onde/quando vêm antes do catálogo: assim o bloco escuro não cola
+    no rodapé, que também é escuro e já repete o endereço.
+  -->
+  <div class="mx-auto flex max-w-[1400px] items-center gap-6 px-5 py-16 sm:px-8" aria-hidden="true">
+    <div class="rule flex-1"></div>
+    <Logomarca class="h-14 w-auto text-carvao/55" title="" />
+    <div class="rule flex-1"></div>
+  </div>
+
+  <LocalHorarios />
+
+  <!-- As duas portas de entrada do catálogo -->
+  <section class="border-b border-carvao/15 bg-sage/20">
+    <div class="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 sm:py-24">
+      <p class="eyebrow text-melaco" data-reveal>Como levar um pão</p>
+      <h2
+        class="mt-4 max-w-[20ch] font-sans text-[clamp(1.8rem,4.5vw,3.2rem)] leading-[0.98] font-bold tracking-[-0.02em] uppercase"
+        data-reveal
+      >
+        Dois jeitos, um WhatsApp só
+      </h2>
+
+      <div class="mt-12 grid gap-8 md:grid-cols-2">
+        {
+          portas.map((porta, indice) => (
+            <a
+              href={porta.href}
+              class="group flex flex-col overflow-hidden rounded-[2px] bg-creme transition-transform hover:-translate-y-1"
+              data-reveal
+              data-reveal-delay={indice * 100}
+            >
+              <img
+                src={porta.imagem}
+                alt=""
+                aria-hidden="true"
+                width="800"
+                height="1000"
+                loading="lazy"
+                decoding="async"
+                class="aspect-[16/9] w-full object-cover"
+              />
+              <div class="flex flex-1 flex-col p-8">
+                <p class="eyebrow text-terracota">{porta.eyebrow}</p>
+                <h3 class="mt-3 font-serif text-3xl sm:text-4xl">{porta.titulo}</h3>
+                <p class="mt-3 flex-1 leading-relaxed text-carvao/70">{porta.texto}</p>
+                <span class="eyebrow mt-6 inline-flex items-center gap-2 text-carvao group-hover:text-terracota">
+                  Ver a lista
+                  <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+</Base>

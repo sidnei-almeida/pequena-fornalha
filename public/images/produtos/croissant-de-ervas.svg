@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Croissant Integral de Ervas — foto em breve">
+  <defs>
+    <linearGradient id="f12" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#cec7ac"/>
+      <stop offset="1" stop-color="#27231f" stop-opacity="0.18"/>
+    </linearGradient>
+    <radialGradient id="m12" cx="0.38" cy="0.3" r="0.85">
+      <stop offset="0" stop-color="#7d6a4e"/>
+      <stop offset="1" stop-color="#4f4335"/>
+    </radialGradient>
+    <filter id="g12">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" result="n"/>
+      <feColorMatrix in="n" type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.16"/></feComponentTransfer>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="1000" fill="url(#f12)"/>
+  
+    <ellipse cx="400" cy="700" rx="230" ry="32" fill="#27231f" opacity="0.14"/>
+    <path d="M155 640c30-160 150-265 300-280-25 150-135 255-300 280Z" fill="url(#m12)"/>
+    <path d="M645 640c-30-160-150-265-300-280 25 150 135 255 300 280Z" fill="url(#m12)"/>
+    <ellipse cx="400" cy="565" rx="120" ry="105" fill="url(#m12)"/>
+    <g stroke="#cec7ac" stroke-opacity="0.45" stroke-width="8" stroke-linecap="round" fill="none">
+      <path d="M330 520q70 45 140 0"/>
+      <path d="M320 590q80 50 160 0"/>
+    </g>
+  <rect width="800" height="1000" filter="url(#g12)" fill="#27231f" opacity="0.5"/>
+
+  <text x="400" y="920" text-anchor="middle" font-family="Montserrat, Helvetica, Arial, sans-serif"
+        font-size="24" letter-spacing="7" fill="#27231f" fill-opacity="0.5">FOTO EM BREVE</text>
+</svg>

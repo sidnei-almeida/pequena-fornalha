@@ -1,0 +1,125 @@
+---
+import Base from '../layouts/Base.astro';
+import CabecalhoPagina from '../components/CabecalhoPagina.astro';
+import Aviso from '../components/Aviso.astro';
+import { alergenosDoCatalogo } from '../data/produtos';
+import { site } from '../data/site';
+
+const secoes = [
+  {
+    id: 'alergenos',
+    titulo: 'Alérgenos e contaminação cruzada',
+    paragrafos: [
+      'Trabalhamos com farinha de trigo e de centeio na mesma bancada, com as mesmas assadeiras e no mesmo forno. Também manipulamos leite, ovos, manteiga, sementes e frutas secas no mesmo espaço.',
+      'Por isso não temos como garantir ausência de contaminação cruzada em nenhum produto, mesmo naqueles cuja receita não leva determinado alérgeno. Quem tem alergia grave deve considerar esse risco antes de pedir.',
+      'A lista de ingredientes e os alérgenos de cada item estão na página do próprio produto. Em caso de dúvida, pergunte antes de encomendar.',
+    ],
+  },
+  {
+    id: 'encomendas',
+    titulo: 'Encomendas, prazos e cancelamento',
+    paragrafos: [
+      'Encomendas são combinadas pelo WhatsApp e só estão confirmadas depois da nossa resposta com o total e o horário de retirada. Mensagem enviada não é pedido confirmado.',
+      'Prazos mínimos: pães e itens da fornada até quarta-feira às 20h; bolos e itens especiais, 3 dias; bolo de festa, 5 dias. Não atendemos encomendas para o mesmo dia.',
+      'Encomendas acima de R$ 150 exigem 50% de sinal por Pix na confirmação. Alterações e cancelamentos são aceitos até 48 horas antes da retirada; depois desse prazo o sinal não é devolvido, porque os ingredientes já foram comprados e a fermentação já começou.',
+      'Guardamos o pedido até o fim do horário de retirada do dia combinado. Pedidos não retirados não geram crédito nem reembolso.',
+    ],
+  },
+  {
+    id: 'pagamento',
+    titulo: 'Pagamento e preços',
+    paragrafos: [
+      'Aceitamos Pix, dinheiro e cartão de débito na retirada. Não parcelamos.',
+      'Os preços do site valem para a fornada atual e podem mudar conforme o custo da farinha e dos demais ingredientes. O valor combinado no WhatsApp no momento da confirmação é o que vale para aquele pedido.',
+    ],
+  },
+  {
+    id: 'conservacao',
+    titulo: 'Conservação e validade',
+    paragrafos: [
+      'Pão de fermentação natural não leva conservante. Guarde embrulhado em pano de algodão, com o corte para baixo, e evite saco plástico, que amolece a casca.',
+      'Nessas condições o sourdough dura de 4 a 5 dias, sempre melhorando torrado. Também é possível fatiar e congelar assim que o pão esfriar por completo.',
+      'Bolos com recheio de creme devem ser mantidos refrigerados e consumidos em até 3 dias.',
+    ],
+  },
+  {
+    id: 'dados',
+    titulo: 'Privacidade',
+    paragrafos: [
+      'Este site é estático e não usa cookies de rastreamento, formulários com servidor nem ferramentas de analytics. O formulário de contato apenas monta uma mensagem e abre o WhatsApp no seu aparelho.',
+      'Os dados que você nos passa pelo WhatsApp (nome, telefone e pedido) são usados só para combinar e entregar a encomenda, e não são compartilhados com terceiros.',
+    ],
+  },
+  {
+    id: 'entrega',
+    titulo: 'Retirada e entrega',
+    // TODO: preencher área atendida, taxa, dias e pedido mínimo da entrega.
+    paragrafos: [
+      'A retirada é feita no endereço combinado, dentro dos horários publicados.',
+      'Também fazemos entrega. A área atendida, a taxa e o dia são combinados pelo WhatsApp no momento do pedido, e entram no total antes da confirmação.',
+      'No dia da entrega é preciso ter alguém no endereço para receber. Se não houver, o pedido volta e a nova tentativa é combinada à parte.',
+    ],
+  },
+];
+---
+
+<Base
+  title="Políticas e alérgenos | Pequena Fornalha"
+  description="Regras de encomenda, prazos, cancelamento, pagamento, conservação do pão e aviso de alérgenos da Pequena Fornalha."
+>
+  <CabecalhoPagina
+    eyebrow="Informações"
+    titulo="Políticas e alérgenos"
+    resumo="Ao encomendar você concorda com o que está nesta página. Leia antes de fechar o pedido, principalmente a parte de alérgenos."
+  />
+
+  <div class="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20">
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,0.35fr)_minmax(0,1fr)] lg:gap-20">
+      <nav aria-label="Nesta página" class="lg:sticky lg:top-32 lg:self-start">
+        <h2 class="eyebrow text-carvao/45">Nesta página</h2>
+        <ul class="mt-5 flex flex-col gap-3">
+          {
+            secoes.map((secao) => (
+              <li>
+                <a href={`#${secao.id}`} class="font-serif text-lg hover:text-terracota">
+                  {secao.titulo}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="flex flex-col gap-14">
+        <Aviso titulo="Aviso de alérgenos">
+          <p>
+            A cozinha manipula os seguintes alérgenos: {alergenosDoCatalogo.join(', ')}.
+            Não há linha de produção separada: todos os produtos passam pela mesma
+            bancada e pelo mesmo forno.
+          </p>
+        </Aviso>
+
+        {
+          secoes.map((secao) => (
+            <section id={secao.id} class="scroll-mt-32">
+              <h2 class="font-sans text-[clamp(1.4rem,3vw,2.2rem)] leading-tight font-bold tracking-[-0.02em] uppercase">
+                {secao.titulo}
+              </h2>
+              <div class="mt-5 flex flex-col gap-4 leading-relaxed text-carvao/75">
+                {secao.paragrafos.map((paragrafo) => (
+                  <p>{paragrafo}</p>
+                ))}
+              </div>
+            </section>
+          ))
+        }
+
+        <p class="border-t border-carvao/15 pt-8 text-sm text-carvao/55">
+          Dúvidas sobre qualquer ponto desta página? Fale com a gente pelo{' '}
+          <a href="/contato" class="underline underline-offset-4 hover:text-terracota">contato</a>.
+          Última atualização: agosto de 2026 · {site.name}, {site.city}/{site.state}.
+        </p>
+      </div>
+    </div>
+  </div>
+</Base>

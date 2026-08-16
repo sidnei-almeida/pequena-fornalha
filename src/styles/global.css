@@ -1,0 +1,262 @@
+@import 'tailwindcss';
+
+@import '@fontsource-variable/montserrat/index.css';
+@import '@fontsource-variable/eb-garamond/index.css';
+@import '@fontsource-variable/eb-garamond/wght-italic.css';
+
+/* Paleta oficial do manual da marca */
+@theme {
+  --color-carvao: #27231f; /* Primary Dark */
+  --color-creme: #f1ebd5; /* Text Cream */
+  --color-creme-claro: #f8f4e6;
+  --color-terracota: #ab5f43; /* Terracotta Sourdough */
+  --color-melaco: #683e32; /* Deep Molasses */
+  --color-sage: #6b6b57; /* Sage Earth */
+  --color-linho: #e3d9bd;
+
+  --font-sans: 'Montserrat Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'EB Garamond Variable', ui-serif, Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* compensa o header fixo ao pular para uma âncora */
+    scroll-padding-top: 5.5rem;
+
+    /*
+     * O site é claro em qualquer situação. Sem isto, quem usa o sistema no tema
+     * escuro recebe os controles nativos (lista do select, barra de rolagem,
+     * calendário) pintados de escuro por cima da paleta clara.
+     */
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-creme);
+    color: var(--color-carvao);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-terracota);
+    color: var(--color-creme);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-terracota);
+    outline-offset: 3px;
+  }
+
+  /* No celular, o toque pinta um retângulo azul do sistema por cima do botão. */
+  a,
+  button,
+  summary {
+    -webkit-tap-highlight-color: color-mix(in srgb, var(--color-terracota) 20%, transparent);
+  }
+
+  /* Controles de formulário não herdam a fonte sozinhos: sem isto o select e os
+     campos aparecem na fonte do sistema, destoando do resto da página. */
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+  }
+
+  textarea {
+    /* a alça de redimensionar na diagonal deforma o cartão */
+    resize: vertical;
+    min-height: 8rem;
+  }
+
+  ::placeholder {
+    color: color-mix(in srgb, var(--color-carvao) 45%, transparent);
+    opacity: 1;
+  }
+
+  /* O preenchimento automático do Chrome pinta o campo de azul claro. */
+  input:-webkit-autofill,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-text-fill-color: var(--color-carvao);
+    -webkit-box-shadow: 0 0 0 100px var(--color-creme) inset;
+    caret-color: var(--color-carvao);
+  }
+
+  /* O triângulo padrão do <details> aparece no Firefox mesmo escondendo o do
+     WebKit, e some com list-style. */
+  summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@layer components {
+  /* Letra-espaçada em caixa alta: o padrão tipográfico do manual */
+  .eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  .rule {
+    height: 1px;
+    background-color: color-mix(in srgb, var(--color-carvao) 18%, transparent);
+  }
+
+  /* Select com a seta da casa no lugar da seta cinza do sistema. */
+  .campo-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2327231F' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='m4 6.5 4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    padding-right: 3rem;
+  }
+}
+
+/*
+ * Animações de entrada (ver src/scripts/reveal.ts).
+ * Tudo fica dentro de .anima, classe que o script só coloca no <html> quando há
+ * JavaScript e o sistema não pediu menos movimento. Sem ela nada se esconde.
+ */
+:root {
+  /* saída lenta, sem repique: o tempo da casa */
+  --curva: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.anima [data-reveal] {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity 0.8s var(--curva),
+    transform 0.8s var(--curva);
+}
+
+.anima [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Massa crescendo: cada linha sobe de dentro do próprio corte. */
+.anima [data-crescer] > * {
+  display: block;
+  clip-path: inset(0 0 0 0);
+}
+
+.anima [data-crescer] > * > span {
+  display: block;
+  transform: translateY(105%);
+  transition: transform 1.1s var(--curva);
+  transition-delay: var(--atraso-linha, 0ms);
+}
+
+.anima [data-crescer].is-visible > * > span {
+  transform: none;
+}
+
+/* Boca do forno abrindo: a cortina sai de cima da imagem. */
+.anima [data-fornada] {
+  position: relative;
+  overflow: hidden;
+}
+
+.anima [data-fornada]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-color: var(--color-creme);
+  transform-origin: top;
+  transition: transform 1.2s var(--curva);
+}
+
+.anima [data-fornada].is-visible::after {
+  transform: scaleY(0);
+}
+
+/* A imagem por baixo se acomoda enquanto a cortina sobe. */
+.anima [data-fornada] > img {
+  transform: scale(1.06);
+  transition: transform 1.6s var(--curva);
+}
+
+.anima [data-fornada].is-visible > img {
+  transform: none;
+}
+
+/* Brasa: a chama da logomarca respira, bem devagar. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes brasa {
+    0%,
+    100% {
+      transform: scaleY(1) translateY(0);
+      opacity: 1;
+    }
+    35% {
+      transform: scaleY(1.05) translateY(-0.5px);
+      opacity: 0.94;
+    }
+    70% {
+      transform: scaleY(0.97) translateY(0.3px);
+      opacity: 1;
+    }
+  }
+
+  .chama {
+    transform-origin: 50% 62%;
+    animation: brasa 4.5s ease-in-out infinite;
+  }
+}
+
+/* O fundo do hero se aproxima devagar, do jeito que o forno esquenta. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes aproximar {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08);
+    }
+  }
+
+  .hero-fundo {
+    animation: aproximar 24s ease-out forwards;
+  }
+}
+
+/* Barra de rolagem na paleta, no lugar da cinza do sistema. */
+@supports (scrollbar-color: auto) {
+  html {
+    scrollbar-color: color-mix(in srgb, var(--color-carvao) 35%, transparent) var(--color-creme);
+    scrollbar-width: thin;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}

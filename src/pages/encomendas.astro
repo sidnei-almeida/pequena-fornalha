@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro';
+import CabecalhoPagina from '../components/CabecalhoPagina.astro';
+import GradeCategorias from '../components/GradeCategorias.astro';
+import Aviso from '../components/Aviso.astro';
+import LocalHorarios from '../components/LocalHorarios.astro';
+import IconeWhatsApp from '../components/IconeWhatsApp.astro';
+import Botao from '../components/Botao.astro';
+import { paraEncomenda } from '../data/produtos';
+import { whatsappUrl } from '../data/site';
+
+const passos = [
+  {
+    numero: '01',
+    titulo: 'Chama no WhatsApp',
+    texto:
+      'Diga os itens, a quantidade e para qual dia. Pães da fornada: até quarta, 20h. Bolos: 3 dias de antecedência.',
+  },
+  {
+    numero: '02',
+    titulo: 'A gente confirma',
+    texto:
+      'Respondemos com o total e o horário de retirada. O pedido só está confirmado depois dessa resposta.',
+  },
+  {
+    numero: '03',
+    titulo: 'Retirada ou entrega',
+    texto:
+      'Você busca na garagem no horário combinado, ou a gente entrega. A taxa entra no total antes da confirmação.',
+  },
+];
+---
+
+<Base
+  title="Encomendas | Pequena Fornalha"
+  description="Pães garantidos, bolos e itens especiais por encomenda. Combine pelo WhatsApp com alguns dias de antecedência e retire na garagem."
+>
+  <CabecalhoPagina
+    eyebrow="Peça com antecedência"
+    titulo="Encomendas"
+    resumo="Encomenda é a única forma de garantir o pão. Combinamos tudo pelo WhatsApp: você diz o que quer e para quando, a gente confirma o total e o horário de retirada."
+  >
+    <div class="mt-8 flex flex-wrap gap-3">
+      <Botao href={whatsappUrl('Olá! Gostaria de fazer uma encomenda.')} externo>
+        <IconeWhatsApp slot="icone" class="h-4 w-4" />
+        Fazer pedido
+      </Botao>
+      <Botao href="/pronta-entrega" variante="contorno" seta>Ver o que tem hoje no balcão</Botao>
+    </div>
+  </CabecalhoPagina>
+
+  <!-- Como funciona -->
+  <section class="border-b border-carvao/15 bg-sage/20">
+    <div class="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20">
+      <h2 class="eyebrow text-melaco" data-reveal>Como funciona</h2>
+      <ol class="mt-10 grid gap-10 md:grid-cols-3">
+        {
+          passos.map((passo, indice) => (
+            <li class="border-t border-carvao/20 pt-6" data-reveal data-reveal-delay={indice * 100}>
+              <span class="eyebrow text-terracota">{passo.numero}</span>
+              <h3 class="mt-4 font-serif text-2xl sm:text-3xl">{passo.titulo}</h3>
+              <p class="mt-3 leading-relaxed text-carvao/70">{passo.texto}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <GradeCategorias produtos={paraEncomenda} />
+
+  <div class="mx-auto max-w-[1400px] px-5 pb-20 sm:px-8 sm:pb-24">
+    <Aviso titulo="Regras da encomenda" tom="escuro">
+      <p>
+        <strong class="font-semibold">Prazos:</strong> pães e itens da fornada até quarta-feira,
+        20h. Bolos e itens marcados, 3 dias. Bolo de festa, 5 dias. Não fazemos
+        encomenda para o mesmo dia: a massa sozinha leva 24 horas.
+      </p>
+      <p>
+        <strong class="font-semibold">Sinal:</strong> encomendas acima de R$ 150 pedem 50% por
+        Pix na confirmação. O restante fica para a retirada.
+      </p>
+      <p>
+        <strong class="font-semibold">Alterações:</strong> dá para mudar ou cancelar até 48
+        horas antes da retirada. Depois disso os ingredientes já foram comprados e o
+        sinal não é devolvido.
+      </p>
+      <p>
+        Ao encomendar você concorda com as{' '}
+        <a href="/politicas" class="text-terracota underline underline-offset-4 hover:text-creme">
+          políticas e o aviso de alérgenos
+        </a>. Dúvida sobre prazo ou entrega? Veja as{' '}
+        <a
+          href="/perguntas-frequentes"
+          class="text-terracota underline underline-offset-4 hover:text-creme"
+        >
+          perguntas frequentes
+        </a>.
+      </p>
+    </Aviso>
+  </div>
+
+  <LocalHorarios tom="claro" />
+</Base>

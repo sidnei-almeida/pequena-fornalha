@@ -1,0 +1,63 @@
+---
+/**
+ * Botão da casa.
+ *
+ * Não é pílula: canto reto de 2px, igual ao das imagens e cartões do site, com
+ * o rótulo em caixa alta espaçada. No hover a cor de fundo desliza de baixo
+ * para cima, em vez de só trocar de tom.
+ *
+ * Variantes:
+ *   escuro   fundo carvão, para a ação principal em fundo claro
+ *   claro    fundo creme, para a ação principal em fundo escuro
+ *   contorno só a linha, para a ação secundária (herda a cor do texto)
+ */
+interface Props {
+  href: string;
+  variante?: 'escuro' | 'claro' | 'contorno';
+  externo?: boolean;
+  /** Seta indicando navegação, some por padrão. */
+  seta?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  variante = 'escuro',
+  externo = false,
+  seta = false,
+  class: className = '',
+} = Astro.props;
+
+const base =
+  'group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-[2px] px-8 py-4 transition-colors duration-300';
+
+const estilos = {
+  escuro: 'bg-carvao text-creme hover:text-creme',
+  claro: 'bg-creme text-carvao hover:text-creme',
+  contorno: 'border border-current/35 hover:text-creme',
+};
+
+// A camada que sobe no hover: terracota nas três variantes.
+const preenchimento =
+  'absolute inset-0 -z-0 translate-y-full bg-terracota transition-transform duration-300 ease-out group-hover:translate-y-0';
+---
+
+<a
+  href={href}
+  target={externo ? '_blank' : undefined}
+  rel={externo ? 'noopener' : undefined}
+  class:list={[base, estilos[variante], className]}
+>
+  <span class={preenchimento} aria-hidden="true"></span>
+  <span class="relative z-10 flex items-center gap-3">
+    <slot name="icone" />
+    <span class="eyebrow whitespace-nowrap"><slot /></span>
+    {
+      seta && (
+        <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">
+          →
+        </span>
+      )
+    }
+  </span>
+</a>

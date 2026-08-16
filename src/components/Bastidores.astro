@@ -1,0 +1,61 @@
+---
+/**
+ * Bastidores: imagem primeiro, texto quase nenhum.
+ * Uma faixa de foto cheia e uma trinca de fotos com uma palavra cada.
+ *
+ * Placeholders em `public/images/preparo-*.svg` — trocar por fotos reais.
+ */
+const fotos = [
+  { src: '/images/preparo-cestos.svg', alt: 'Cestos de fermentação na prateleira', legenda: 'Fermentação' },
+  { src: '/images/preparo-resfriamento.svg', alt: 'Pães esfriando na grade', legenda: 'Resfriamento' },
+  { src: '/images/preparo-forno.svg', alt: 'Pães entrando no forno', legenda: 'Forno' },
+];
+---
+
+<section class="relative flex h-[380px] items-center overflow-hidden bg-carvao sm:h-[460px]">
+  <img
+    src="/images/preparo-bancada.svg"
+    alt="Massa sendo dividida na bancada da Pequena Fornalha"
+    width="1600"
+    height="1100"
+    loading="lazy"
+    decoding="async"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+
+  <div class="relative mx-auto w-full max-w-[1400px] px-5 sm:px-8">
+    <p
+      class="mx-auto max-w-2xl bg-creme p-8 text-center font-serif text-lg leading-snug sm:p-12 sm:text-3xl"
+      data-reveal
+    >
+      Retirada na garagem nos dias de fornada, ou entrega na sua casa. Os dois
+      são combinados pelo WhatsApp, com horário e valor fechados antes de a
+      massa ir ao forno.
+    </p>
+  </div>
+</section>
+
+<section class="bg-terracota text-creme">
+  <div class="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20">
+    <p class="eyebrow text-creme/70" data-reveal>Nos bastidores</p>
+
+    <div class="mt-8 grid gap-6 sm:grid-cols-3">
+      {
+        fotos.map((foto, indice) => (
+          <figure class="m-0" data-reveal data-reveal-delay={indice * 100}>
+            <img
+              src={foto.src}
+              alt={foto.alt}
+              width="1000"
+              height="1250"
+              loading="lazy"
+              decoding="async"
+              class="aspect-[4/5] w-full object-cover"
+            />
+            <figcaption class="eyebrow mt-4 text-creme/75">{foto.legenda}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+---
+/**
+ * Grão de trigo em miniatura, usado no lugar de travessões e bolinhas para
+ * separar pedaços curtos de texto (cidade, estado, peso, dieta).
+ *
+ * É a espiga que saiu da logomarca voltando como detalhe. Acompanha o tamanho
+ * da fonte (em) e herda a cor do texto em volta, para não virar enfeite.
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 12 12"
+  fill="currentColor"
+  aria-hidden="true"
+  class:list={['inline-block h-[0.45em] w-[0.45em] shrink-0 align-[-0.02em]', className]}
+>
+  <path d="M6 1c2.7 2.4 2.7 7.6 0 10C3.3 8.6 3.3 3.4 6 1Z"></path>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Rosca de Canela — foto em breve">
+  <defs>
+    <linearGradient id="f8" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#d9cfae"/>
+      <stop offset="1" stop-color="#27231f" stop-opacity="0.18"/>
+    </linearGradient>
+    <radialGradient id="m8" cx="0.38" cy="0.3" r="0.85">
+      <stop offset="0" stop-color="#8f5137"/>
+      <stop offset="1" stop-color="#5a3429"/>
+    </radialGradient>
+    <filter id="g8">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" result="n"/>
+      <feColorMatrix in="n" type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.16"/></feComponentTransfer>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="1000" fill="url(#f8)"/>
+  
+    <ellipse cx="400" cy="700" rx="205" ry="32" fill="#27231f" opacity="0.14"/>
+    <ellipse cx="400" cy="580" rx="195" ry="140" fill="url(#m8)"/>
+    <g stroke="#d9cfae" stroke-opacity="0.5" stroke-width="11" stroke-linecap="round" fill="none">
+      <path d="M400 490c-50 0-90 40-90 90s40 90 90 90 70-30 70-65-25-55-55-55-45 18-45 38"/>
+    </g>
+  <rect width="800" height="1000" filter="url(#g8)" fill="#27231f" opacity="0.5"/>
+
+  <text x="400" y="920" text-anchor="middle" font-family="Montserrat, Helvetica, Arial, sans-serif"
+        font-size="24" letter-spacing="7" fill="#27231f" fill-opacity="0.5">FOTO EM BREVE</text>
+</svg>

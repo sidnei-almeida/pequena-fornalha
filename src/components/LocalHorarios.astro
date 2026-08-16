@@ -1,0 +1,53 @@
+---
+import IconeWhatsApp from './IconeWhatsApp.astro';
+import Separador from './Separador.astro';
+import Botao from './Botao.astro';
+import { schedule, site, whatsappUrl } from '../data/site';
+
+interface Props {
+  /** Fundo escuro quando a seção fecha a página. */
+  tom?: 'claro' | 'escuro';
+}
+
+const { tom = 'escuro' } = Astro.props;
+const escuro = tom === 'escuro';
+---
+
+<section class:list={[escuro ? 'bg-carvao text-creme' : 'bg-sage/25 text-carvao']}>
+  <div class="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-2 lg:gap-20">
+    <div>
+      <h2 class:list={['eyebrow', escuro ? 'text-creme/55' : 'text-melaco']}>Onde e quando</h2>
+      <p class="mt-6 font-serif text-3xl leading-tight sm:text-4xl">
+        {site.neighborhood}<br />{site.city}
+        <Separador />
+        {site.state}
+      </p>
+      <p class:list={['mt-5 max-w-sm leading-relaxed', escuro ? 'text-creme/70' : 'text-carvao/70']}>
+        {site.addressNote}
+      </p>
+      <Botao href={whatsappUrl()} externo variante={escuro ? 'claro' : 'escuro'} class="mt-8">
+        <IconeWhatsApp slot="icone" class="h-4 w-4" />
+        Fazer pedido
+      </Botao>
+    </div>
+
+    <div>
+      <h2 class:list={['eyebrow', escuro ? 'text-creme/55' : 'text-melaco']}>Horários de retirada</h2>
+      <dl class="mt-6">
+        {
+          schedule.map((item) => (
+            <div
+              class:list={[
+                'flex items-baseline justify-between gap-6 border-b py-4 last:border-b-0',
+                escuro ? 'border-creme/15' : 'border-carvao/15',
+              ]}
+            >
+              <dt class="font-serif text-xl">{item.day}</dt>
+              <dd class:list={['text-sm', escuro ? 'text-creme/70' : 'text-carvao/65']}>{item.hours}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+</section>

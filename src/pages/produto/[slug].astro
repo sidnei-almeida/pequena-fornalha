@@ -1,0 +1,164 @@
+---
+import Base from '../../layouts/Base.astro';
+import IconeWhatsApp from '../../components/IconeWhatsApp.astro';
+import CardProduto from '../../components/CardProduto.astro';
+import Botao from '../../components/Botao.astro';
+import { categorias, imagemProduto, produtos, type Produto } from '../../data/produtos';
+import { whatsappUrl } from '../../data/site';
+
+export function getStaticPaths() {
+  return produtos.map((produto) => ({
+    params: { slug: produto.slug },
+    props: { produto },
+  }));
+}
+
+interface Props {
+  produto: Produto;
+}
+
+const { produto } = Astro.props;
+
+const categoria = categorias.find((c) => c.id === produto.categoria)!;
+const soEncomenda = produto.disponibilidade === 'encomenda';
+const naFornadaTambem = produto.disponibilidade !== 'encomenda';
+const origem = soEncomenda
+  ? { href: '/encomendas', label: 'Encomendas' }
+  : { href: '/pronta-entrega', label: 'Pronta entrega' };
+
+const relacionados = produtos
+  .filter((p) => p.categoria === produto.categoria && p.slug !== produto.slug)
+  .slice(0, 3);
+
+const mensagem = soEncomenda
+  ? `Olá! Gostaria de encomendar: ${produto.nome}.`
+  : `Olá! Gostaria de reservar: ${produto.nome}.`;
+---
+
+<Base
+  title={`${produto.nome} | Pequena Fornalha`}
+  description={produto.descricao}
+>
+  <article>
+    <div class="mx-auto max-w-[1400px] px-5 pt-32 pb-16 sm:px-8 sm:pt-40 sm:pb-24">
+      <a href={origem.href} class="eyebrow inline-flex items-center gap-2 text-carvao/55 hover:text-terracota">
+        <span aria-hidden="true">←</span>
+        {origem.label}
+      </a>
+
+      <div class="mt-8 grid gap-12 lg:grid-cols-2 lg:gap-20">
+        <img
+          src={imagemProduto(produto)}
+          alt={produto.nome}
+          width="800"
+          height="1000"
+          decoding="async"
+          class="aspect-[4/5] w-full rounded-[2px] bg-linho object-cover"
+        />
+
+        <div>
+          <p class="eyebrow text-terracota">{categoria.nome}</p>
+          <h1
+            class="mt-4 font-sans text-[clamp(2rem,5.5vw,4rem)] leading-[0.95] font-bold tracking-[-0.02em] uppercase"
+          >
+            {produto.nome}
+          </h1>
+
+          <p class="mt-6 flex flex-wrap items-baseline gap-x-5 gap-y-2">
+            <span class="font-sans text-2xl font-semibold text-terracota">{produto.preco}</span>
+            <span class="eyebrow text-carvao/50">{produto.peso}</span>
+          </p>
+
+          <p class="mt-8 font-serif text-xl leading-relaxed text-carvao/80">
+            {produto.descricaoLonga}
+          </p>
+
+          <!-- Disponibilidade -->
+          <div class="mt-8 flex flex-col gap-3 border-y border-carvao/15 py-6">
+            <p class="flex items-baseline gap-3">
+              <span class="eyebrow w-32 shrink-0 text-carvao/45">Disponível</span>
+              <span class="leading-relaxed">
+                {
+                  produto.disponibilidade === 'ambos'
+                    ? 'Na fornada da semana e por encomenda.'
+                    : soEncomenda
+                      ? 'Somente por encomenda.'
+                      : 'Somente na fornada da semana, enquanto durar.'
+                }
+              </span>
+            </p>
+            {
+              produto.prazo && (
+                <p class="flex items-baseline gap-3">
+                  <span class="eyebrow w-32 shrink-0 text-carvao/45">Antecedência</span>
+                  <span class="leading-relaxed">{produto.prazo}</span>
+                </p>
+              )
+            }
+            {
+              produto.restricoes && produto.restricoes.length > 0 && (
+                <p class="flex items-baseline gap-3">
+                  <span class="eyebrow w-32 shrink-0 text-carvao/45">Dieta</span>
+                  <span class="leading-relaxed">{produto.restricoes.join(' · ')}</span>
+                </p>
+              )
+            }
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <Botao href={whatsappUrl(mensagem)} externo>
+              <IconeWhatsApp slot="icone" class="h-4 w-4" />
+              Fazer pedido
+            </Botao>
+            {
+              naFornadaTambem && (
+                <Botao href="/pronta-entrega" variante="contorno" seta>Ver a fornada</Botao>
+              )
+            }
+          </div>
+
+          <!-- Ingredientes e alérgenos -->
+          <div class="mt-10 rounded-[2px] bg-sage/25 p-6 sm:p-8">
+            <h2 class="eyebrow text-melaco">Ingredientes</h2>
+            <p class="mt-3 leading-relaxed text-carvao/80">{produto.ingredientes}</p>
+
+            <h2 class="eyebrow mt-6 text-melaco">Alérgenos</h2>
+            <ul class="mt-3 flex flex-wrap gap-2">
+              {
+                produto.alergenos.map((alergeno) => (
+                  <li class="eyebrow rounded-[2px] bg-creme px-3 py-1.5 text-carvao/75">{alergeno}</li>
+                ))
+              }
+            </ul>
+
+            <p class="mt-5 text-sm leading-relaxed text-carvao/60">
+              Produzimos tudo na mesma bancada e no mesmo forno, com farinha de trigo e
+              centeio. Não é possível garantir ausência de contaminação cruzada. Leia as{' '}
+              <a href="/politicas" class="underline underline-offset-4 hover:text-terracota">
+                políticas e alérgenos
+              </a> antes de pedir.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {
+      relacionados.length > 0 && (
+        <section class="border-t border-carvao/15">
+          <div class="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20">
+            <h2 class="font-sans text-[clamp(1.5rem,3.5vw,2.4rem)] leading-none font-bold tracking-[-0.02em] uppercase">
+              Também em {categoria.nome.toLowerCase()}
+            </h2>
+            <div class="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+              {relacionados.map((item, indice) => (
+                <CardProduto produto={item} atraso={indice * 90} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+  </article>
+</Base>

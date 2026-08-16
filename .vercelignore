@@ -1,0 +1,4 @@
+# Nada aqui é usado pelo build do site — fica de fora para o deploy subir leve.
+Instagram/
+brand/
+scripts/

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10.125 6.75 79.75 79.75">
+  <!--
+    Mesma marca do site, sem fundo, sempre na tinta escura da paleta.
+    O viewBox está recortado na caixa do desenho (x 18.75–81.25, y 8.75–84.5)
+    com 2 de folga: assim o símbolo ocupa quase toda a aba, em vez de flutuar
+    no meio de um quadrado com margem sobrando.
+  -->
+  <defs>
+    <!-- O conteúdo das máscaras usa as mesmas coordenadas dos elementos mascarados. -->
+    <mask id="arco">
+      <rect x="0" y="0" width="100" height="100" fill="#fff"/>
+      <ellipse cx="50" cy="71.5" rx="29.3" ry="14.8" fill="#000"/>
+    </mask>
+    <mask id="pao">
+      <ellipse cx="50" cy="71.5" rx="27.5" ry="13" fill="#fff"/>
+      <path d="M36 68.5c4.2-4.4 9-7 14.4-8M53 64c4.4-2.4 9-3.8 13.8-4.2" stroke="#000" stroke-width="3.2" stroke-linecap="round"/>
+    </mask>
+  </defs>
+
+  <g fill="#27231F">
+    <path d="M24 75V40c0-14.4 11.6-26 26-26s26 11.6 26 26v35" stroke="#27231F" stroke-width="10.5" fill="none" mask="url(#arco)"/>
+    <g transform="translate(50 58) scale(1.12) translate(-50 -58)">
+      <path d="M50 26c6 7.5 9.2 11.4 9.2 17.3 0 5.2-4.1 9.2-9.2 9.2s-9.2-4-9.2-9.2c0-3.9 2-6.4 3.9-8.9.8 3.7 2.2 5.5 3.9 6.2-1.7-5.2-1-10.2 1.4-14.6Z"/>
+      <path d="M41.6 33.8c-1 3.4-.8 6.2.6 8.6-3-1.4-4.6-4-4.2-7 .3-2.2 1.6-4.3 4-6.3-.5 1.6-.6 3.1-.4 4.7Z"/>
+    </g>
+    <ellipse cx="50" cy="71.5" rx="27.5" ry="13" mask="url(#pao)"/>
+  </g>
+</svg>

@@ -1,0 +1,26 @@
+---
+/** Bloco de destaque para regras e avisos (prazo, alérgenos, cancelamento). */
+interface Props {
+  titulo: string;
+  tom?: 'claro' | 'escuro';
+}
+
+const { titulo, tom = 'claro' } = Astro.props;
+---
+
+<aside
+  class:list={[
+    'rounded-[2px] p-8 sm:p-10',
+    tom === 'escuro' ? 'bg-carvao text-creme' : 'bg-sage/25 text-carvao',
+  ]}
+>
+  <h2 class:list={['eyebrow', tom === 'escuro' ? 'text-creme/60' : 'text-melaco']}>{titulo}</h2>
+  <div
+    class:list={[
+      'mt-5 flex flex-col gap-4 font-serif text-lg leading-relaxed',
+      tom === 'escuro' ? 'text-creme/80' : 'text-carvao/80',
+    ]}
+  >
+    <slot />
+  </div>
+</aside>

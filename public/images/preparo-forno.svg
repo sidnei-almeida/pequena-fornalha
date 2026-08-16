@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100" width="1600" height="1100" role="img" aria-label="Pães entrando no forno">
+  <defs>
+    <linearGradient id="parede3" x1="0.1" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#d2a071"/>
+      <stop offset="1" stop-color="#3a2a20"/>
+    </linearGradient>
+    <radialGradient id="massa3" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#b06a44"/>
+      <stop offset="1" stop-color="#3a2a20"/>
+    </radialGradient>
+    <filter id="poeira3">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" result="n"/>
+      <feColorMatrix in="n" type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.22"/></feComponentTransfer>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1100" fill="url(#parede3)"/>
+  
+  <g transform="translate(1080 560)">
+    <path d="M-330 320V-30c0-170 148-310 330-310s330 140 330 310v350Z" fill="#27231f" opacity="0.86"/>
+    <ellipse cx="0" cy="150" rx="250" ry="150" fill="#d2a071" opacity="0.28"/>
+  </g>
+  <g transform="rotate(-8 620 700)">
+    <rect x="60" y="690" width="760" height="34" rx="17" fill="#27231f" opacity="0.6"/>
+    <rect x="620" y="600" width="420" height="210" rx="20" fill="#f1ebd5" opacity="0.28"/>
+    <g fill="url(#massa3)">
+      <ellipse cx="740" cy="690" rx="96" ry="66"/>
+      <ellipse cx="920" cy="690" rx="96" ry="66"/>
+    </g>
+    <g stroke="#d2a071" stroke-opacity="0.45" stroke-width="7" stroke-linecap="round" fill="none">
+      <path d="M690 676q46-22 100-34"/>
+      <path d="M870 676q46-22 100-34"/>
+    </g>
+  </g>
+  <rect width="1600" height="1100" filter="url(#poeira3)" fill="#f1ebd5" opacity="0.5"/>
+  <text x="800" y="1054" text-anchor="middle"
+        font-family="Montserrat, Helvetica, Arial, sans-serif"
+        font-size="28" letter-spacing="8" fill="#f1ebd5" fill-opacity="0.65">FOTO EM BREVE</text>
+</svg>

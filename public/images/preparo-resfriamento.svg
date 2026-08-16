@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="Pães esfriando na grade">
+  <defs>
+    <linearGradient id="parede4" x1="0.1" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#d8cdb0"/>
+      <stop offset="1" stop-color="#4a3226"/>
+    </linearGradient>
+    <radialGradient id="massa4" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#a8663f"/>
+      <stop offset="1" stop-color="#4a3226"/>
+    </radialGradient>
+    <filter id="poeira4">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" result="n"/>
+      <feColorMatrix in="n" type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.22"/></feComponentTransfer>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1000" height="1250" fill="url(#parede4)"/>
+  
+  <g stroke="#f1ebd5" stroke-opacity="0.35" stroke-width="7">
+    <path d="M60 470h880M60 900h880"/>
+    <path d="M90 440v60"/><path d="M148 440v60"/><path d="M206 440v60"/><path d="M264 440v60"/><path d="M322 440v60"/><path d="M380 440v60"/><path d="M438 440v60"/><path d="M496 440v60"/><path d="M554 440v60"/><path d="M612 440v60"/><path d="M670 440v60"/><path d="M728 440v60"/><path d="M786 440v60"/><path d="M844 440v60"/><path d="M902 440v60"/>
+    <path d="M90 870v60"/><path d="M148 870v60"/><path d="M206 870v60"/><path d="M264 870v60"/><path d="M322 870v60"/><path d="M380 870v60"/><path d="M438 870v60"/><path d="M496 870v60"/><path d="M554 870v60"/><path d="M612 870v60"/><path d="M670 870v60"/><path d="M728 870v60"/><path d="M786 870v60"/><path d="M844 870v60"/><path d="M902 870v60"/>
+  </g>
+  
+    <ellipse cx="280" cy="420" rx="150" ry="62" fill="url(#massa4)"/>
+    <g stroke="#d8cdb0" stroke-opacity="0.45" stroke-width="6" stroke-linecap="round" fill="none">
+      <path d="M190 413.8q75 -31 165 -46.5"/>
+    </g>
+  
+    <ellipse cx="640" cy="405" rx="140" ry="58" fill="url(#massa4)"/>
+    <g stroke="#d8cdb0" stroke-opacity="0.45" stroke-width="6" stroke-linecap="round" fill="none">
+      <path d="M556 399.2q70 -29 154 -43.5"/>
+    </g>
+  
+    <ellipse cx="320" cy="850" rx="155" ry="64" fill="url(#massa4)"/>
+    <g stroke="#d8cdb0" stroke-opacity="0.45" stroke-width="6" stroke-linecap="round" fill="none">
+      <path d="M227 843.6q77.5 -32 170.5 -48"/>
+    </g>
+  
+    <ellipse cx="690" cy="862" rx="145" ry="60" fill="url(#massa4)"/>
+    <g stroke="#d8cdb0" stroke-opacity="0.45" stroke-width="6" stroke-linecap="round" fill="none">
+      <path d="M603 856q72.5 -30 159.5 -45"/>
+    </g>
+  <rect width="1000" height="1250" filter="url(#poeira4)" fill="#f1ebd5" opacity="0.5"/>
+  <text x="500" y="1204" text-anchor="middle"
+        font-family="Montserrat, Helvetica, Arial, sans-serif"
+        font-size="17" letter-spacing="8" fill="#f1ebd5" fill-opacity="0.65">FOTO EM BREVE</text>
+</svg>
