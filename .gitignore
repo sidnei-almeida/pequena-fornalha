@@ -6,3 +6,6 @@ dist/
 .env.production
 .DS_Store
 npm-debug.log*
+
+# Os brutos do vídeo do hero (só o loop montado em public/video/ vai pro site)
+videos/

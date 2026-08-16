@@ -122,6 +122,160 @@
     background-size: 1rem;
     padding-right: 3rem;
   }
+
+  /*
+   * Fundo do hero. O vídeo já sai da edição com a cor puxada pro quente e a
+   * halação do filme; aqui entram as camadas que amarram ele na paleta.
+   *
+   * Tudo mora dentro de .hero-fundo com `isolation`: sem isso o grão mistura
+   * com o que estiver atrás da página e a cor vira outra quando o navegador
+   * entra em tela cheia, que ganha um contexto de empilhamento próprio.
+   */
+  .hero-fundo {
+    isolation: isolate;
+    /* fundo é fundo: nenhum clique ou menu de vídeo pega aqui */
+    pointer-events: none;
+  }
+
+  .hero-video {
+    /* o poster aparece primeiro; o vídeo entra por cima quando tem quadro */
+    opacity: 0;
+    transition: opacity 1.2s ease-out;
+  }
+
+  .hero-video.esta-pronto {
+    opacity: 1;
+  }
+
+  /* Aproximação lenta: dá o tempo de câmera na mão sem mexer no arquivo. */
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes aproximar-hero {
+      from {
+        transform: scale(1.01);
+      }
+      to {
+        transform: scale(1.09);
+      }
+    }
+
+    /* Trepidação de projetor: fração de por cento, só pra não ficar travado. */
+    @keyframes tremular-hero {
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
+      25% {
+        transform: translate3d(-0.14%, 0.1%, 0);
+      }
+      50% {
+        transform: translate3d(0.12%, -0.12%, 0);
+      }
+      75% {
+        transform: translate3d(0.1%, 0.14%, 0);
+      }
+    }
+
+    .hero-video,
+    .hero-poster {
+      animation: aproximar-hero 44s var(--curva) infinite alternate;
+    }
+
+    .hero-fundo {
+      /* contínuo, não em saltos: é deriva de janela de projetor, não falha */
+      animation: tremular-hero 11s ease-in-out infinite;
+    }
+  }
+
+  /*
+   * Banho quente na cor da marca: tira o resto de azul da cozinha e amarra o
+   * quadro na paleta. Alfa puro, sem mix-blend-mode — modo de mesclagem depende
+   * do contexto de empilhamento e mudava de cor em tela cheia.
+   */
+  .hero-cor {
+    background: linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--color-melaco) 34%, transparent) 0%,
+      color-mix(in srgb, var(--color-terracota) 15%, transparent) 45%,
+      color-mix(in srgb, var(--color-sage) 20%, transparent) 100%
+    );
+  }
+
+  /* Vinheta: fecha os cantos e joga o olho pro meio do quadro. */
+  .hero-vinheta {
+    background: radial-gradient(
+      120% 85% at 50% 42%,
+      transparent 30%,
+      color-mix(in srgb, var(--color-carvao) 45%, transparent) 78%,
+      var(--color-carvao) 118%
+    );
+  }
+
+  /*
+   * Grão de filme: duas camadas de ruído em escalas diferentes, uma delas
+   * pulando de posição a cada quadro. É o que faz parecer filmado em casa, num
+   * rolo de 35mm, em vez de vídeo limpo de banco de imagens — e ainda disfarça
+   * as faixas que o degradê escuro cria em tela grande.
+   */
+  .hero-grao {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='1.6' intercept='-0.3'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23g)' opacity='0.85'/%3E%3C/svg%3E");
+    background-size: 140px 140px;
+    /* sem mix-blend-mode: em `overlay` o grão some justo nas sombras, e este
+       quadro é quase todo sombra */
+    opacity: 0.14;
+  }
+
+  /* A segunda camada é mais grossa e é a que se mexe. */
+  .hero-grao::after {
+    content: '';
+    position: absolute;
+    /* folga pra sobra não aparecer quando a camada pula de lugar */
+    inset: -8%;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23g)' opacity='0.5'/%3E%3C/svg%3E");
+    background-size: 260px 260px;
+    opacity: 0.6;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes correr-grao {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      20% {
+        transform: translate3d(-4%, 3%, 0);
+      }
+      40% {
+        transform: translate3d(3%, -4%, 0);
+      }
+      60% {
+        transform: translate3d(-3%, -2%, 0);
+      }
+      80% {
+        transform: translate3d(4%, 2%, 0);
+      }
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    .hero-grao::after {
+      /* steps() em vez de interpolar: grão de filme troca, não desliza */
+      animation: correr-grao 0.7s steps(1, end) infinite;
+    }
+  }
+
+  /*
+   * Alinhamento óptico do título. Cada fonte tem sua folga lateral: em caixa
+   * alta a Montserrat nasce 0,08em pra dentro e o "f" itálico da Garamond só
+   * 0,04em. Sem corrigir, as três linhas e a régua embaixo ficam em quatro
+   * verticais diferentes.
+   */
+  .titulo-hero {
+    margin-inline-start: -0.08em;
+  }
+
+  .titulo-hero-italico {
+    padding-inline-start: 0.04em;
+  }
 }
 
 /*

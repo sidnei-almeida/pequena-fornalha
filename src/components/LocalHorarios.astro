@@ -3,6 +3,7 @@ import IconeWhatsApp from './IconeWhatsApp.astro';
 import Separador from './Separador.astro';
 import Botao from './Botao.astro';
 import { schedule, site, whatsappUrl } from '../data/site';
+import { msgPedido } from '../data/mensagens';
 
 interface Props {
   /** Fundo escuro quando a seção fecha a página. */
@@ -14,7 +15,7 @@ const escuro = tom === 'escuro';
 ---
 
 <section class:list={[escuro ? 'bg-carvao text-creme' : 'bg-sage/25 text-carvao']}>
-  <div class="mx-auto grid max-w-[1400px] gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-2 lg:gap-20">
+  <div class="mx-auto grid max-w-[1600px] gap-12 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-2 lg:gap-20">
     <div>
       <h2 class:list={['eyebrow', escuro ? 'text-creme/55' : 'text-melaco']}>Onde e quando</h2>
       <p class="mt-6 font-serif text-3xl leading-tight sm:text-4xl">
@@ -25,7 +26,7 @@ const escuro = tom === 'escuro';
       <p class:list={['mt-5 max-w-sm leading-relaxed', escuro ? 'text-creme/70' : 'text-carvao/70']}>
         {site.addressNote}
       </p>
-      <Botao href={whatsappUrl()} externo variante={escuro ? 'claro' : 'escuro'} class="mt-8">
+      <Botao href={whatsappUrl(msgPedido())} externo variante={escuro ? 'claro' : 'escuro'} class="mt-8">
         <IconeWhatsApp slot="icone" class="h-4 w-4" />
         Fazer pedido
       </Botao>

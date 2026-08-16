@@ -10,10 +10,14 @@ export const WHATSAPP_NUMBER = '5554936185585';
 /** O mesmo número, formatado para leitura na tela. */
 export const WHATSAPP_DISPLAY = '+55 54 93618-5585';
 
-export const WHATSAPP_MESSAGE =
-  'Olá! Vim pelo site da Pequena Fornalha e gostaria de fazer um pedido.';
-
-export const whatsappUrl = (message: string = WHATSAPP_MESSAGE) =>
+/**
+ * Monta o link do WhatsApp com a mensagem já escrita.
+ *
+ * A mensagem é obrigatória e sai toda de src/data/mensagens.ts. Sem texto
+ * padrão aqui de propósito: um botão novo que esquecesse de escolher o modelo
+ * abriria a conversa com a mensagem errada, e ninguém ia perceber.
+ */
+export const whatsappUrl = (message: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
 export const site = {
@@ -36,14 +40,15 @@ export const site = {
 
 /**
  * Vídeo de fundo do hero.
- * Enquanto não houver filmagem, `ativo: false` deixa só o poster no lugar —
- * é só colocar os arquivos em public/video/ e virar a chave.
+ * Loop de 22s montado a partir de três cenas (peneirar a farinha, a massa indo
+ * pra forma, a farofa sendo feita à mão), com um tratamento de cor quente e
+ * fosco para casar com a paleta. Sem áudio. `ativo: false` deixa só o poster.
  */
 export const heroVideo = {
-  ativo: false,
+  ativo: true,
   mp4: '/video/fornada.mp4',
   webm: '/video/fornada.webm',
-  poster: '/images/hero.svg',
+  poster: '/images/hero-poster.jpg',
 } as const;
 
 export const schedule = [

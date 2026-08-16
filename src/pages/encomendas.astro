@@ -8,6 +8,7 @@ import IconeWhatsApp from '../components/IconeWhatsApp.astro';
 import Botao from '../components/Botao.astro';
 import { paraEncomenda } from '../data/produtos';
 import { whatsappUrl } from '../data/site';
+import { msgEncomenda } from '../data/mensagens';
 
 const passos = [
   {
@@ -41,7 +42,7 @@ const passos = [
     resumo="Encomenda é a única forma de garantir o pão. Combinamos tudo pelo WhatsApp: você diz o que quer e para quando, a gente confirma o total e o horário de retirada."
   >
     <div class="mt-8 flex flex-wrap gap-3">
-      <Botao href={whatsappUrl('Olá! Gostaria de fazer uma encomenda.')} externo>
+      <Botao href={whatsappUrl(msgEncomenda())} externo>
         <IconeWhatsApp slot="icone" class="h-4 w-4" />
         Fazer pedido
       </Botao>
@@ -51,7 +52,7 @@ const passos = [
 
   <!-- Como funciona -->
   <section class="border-b border-carvao/15 bg-sage/20">
-    <div class="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20">
+    <div class="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-20">
       <h2 class="eyebrow text-melaco" data-reveal>Como funciona</h2>
       <ol class="mt-10 grid gap-10 md:grid-cols-3">
         {
@@ -69,7 +70,7 @@ const passos = [
 
   <GradeCategorias produtos={paraEncomenda} />
 
-  <div class="mx-auto max-w-[1400px] px-5 pb-20 sm:px-8 sm:pb-24">
+  <div class="mx-auto max-w-[1600px] px-5 pb-20 sm:px-8 sm:pb-24">
     <Aviso titulo="Regras da encomenda" tom="escuro">
       <p>
         <strong class="font-semibold">Prazos:</strong> pães e itens da fornada até quarta-feira,

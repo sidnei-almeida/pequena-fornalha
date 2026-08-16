@@ -5,6 +5,7 @@ import CardProduto from '../../components/CardProduto.astro';
 import Botao from '../../components/Botao.astro';
 import { categorias, imagemProduto, produtos, type Produto } from '../../data/produtos';
 import { whatsappUrl } from '../../data/site';
+import { msgProduto } from '../../data/mensagens';
 
 export function getStaticPaths() {
   return produtos.map((produto) => ({
@@ -30,17 +31,20 @@ const relacionados = produtos
   .filter((p) => p.categoria === produto.categoria && p.slug !== produto.slug)
   .slice(0, 3);
 
-const mensagem = soEncomenda
-  ? `Olá! Gostaria de encomendar: ${produto.nome}.`
-  : `Olá! Gostaria de reservar: ${produto.nome}.`;
+// Absoluta de propósito: é ela que vai dentro da mensagem do WhatsApp, e a
+// prévia com a foto do produto só monta com endereço completo.
+const urlProduto = new URL(`/produto/${produto.slug}`, Astro.site).href;
+const mensagem = msgProduto(produto, urlProduto);
 ---
 
 <Base
   title={`${produto.nome} | Pequena Fornalha`}
   description={produto.descricao}
+  imagem={`/og/produtos/${produto.slug}.png`}
+  imagemAlt={`${produto.nome} — ${produto.preco}, ${produto.peso}. Pequena Fornalha.`}
 >
   <article>
-    <div class="mx-auto max-w-[1400px] px-5 pt-32 pb-16 sm:px-8 sm:pt-40 sm:pb-24">
+    <div class="mx-auto max-w-[1600px] px-5 pt-32 pb-16 sm:px-8 sm:pt-40 sm:pb-24">
       <a href={origem.href} class="eyebrow inline-flex items-center gap-2 text-carvao/55 hover:text-terracota">
         <span aria-hidden="true">←</span>
         {origem.label}
@@ -146,7 +150,7 @@ const mensagem = soEncomenda
     {
       relacionados.length > 0 && (
         <section class="border-t border-carvao/15">
-          <div class="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20">
+          <div class="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-20">
             <h2 class="font-sans text-[clamp(1.5rem,3.5vw,2.4rem)] leading-none font-bold tracking-[-0.02em] uppercase">
               Também em {categoria.nome.toLowerCase()}
             </h2>

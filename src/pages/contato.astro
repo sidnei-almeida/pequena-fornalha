@@ -25,7 +25,7 @@ const assuntos = [
     resumo="A maior parte das dúvidas já está nas perguntas frequentes. Para o resto, o WhatsApp é o caminho mais rápido."
   />
 
-  <section class="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20">
+  <section class="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-20">
     <div class="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-20">
       <div>
         <h2 class="eyebrow text-terracota">Canais</h2>
@@ -123,22 +123,24 @@ const assuntos = [
 
   <script>
     import '../scripts/select';
-  </script>
+    import { whatsappUrl } from '../data/site';
+    import { msgContato } from '../data/mensagens';
 
-  <script is:inline define:vars={{ numero: WHATSAPP_NUMBER }}>
-    const form = document.getElementById('form-contato');
+    const form = document.getElementById('form-contato') as HTMLFormElement | null;
 
     form?.addEventListener('submit', (evento) => {
       evento.preventDefault();
       const dados = new FormData(form);
-      const texto = [
-        `Olá! Sou ${dados.get('nome')}.`,
-        `Assunto: ${dados.get('assunto')}.`,
-        '',
-        String(dados.get('mensagem') ?? ''),
-      ].join('\n');
 
-      window.open(`https://wa.me/${numero}?text=${encodeURIComponent(texto)}`, '_blank', 'noopener');
+      // Mesmo modelo dos botões do site: o texto sai daqui, não de um literal
+      // solto no meio do HTML.
+      const texto = msgContato({
+        nome: String(dados.get('nome') ?? ''),
+        assunto: String(dados.get('assunto') ?? ''),
+        mensagem: String(dados.get('mensagem') ?? ''),
+      });
+
+      window.open(whatsappUrl(texto), '_blank', 'noopener');
     });
   </script>
 </Base>

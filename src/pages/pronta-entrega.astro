@@ -8,6 +8,7 @@ import IconeWhatsApp from '../components/IconeWhatsApp.astro';
 import Botao from '../components/Botao.astro';
 import { naFornada } from '../data/produtos';
 import { whatsappUrl } from '../data/site';
+import { msgFornada } from '../data/mensagens';
 ---
 
 <Base
@@ -20,7 +21,7 @@ import { whatsappUrl } from '../data/site';
     resumo="É o que está no balcão nos dias de retirada. Não precisa encomendar: chega, escolhe e leva, enquanto durar. A fornada é pequena e o cardápio muda com a estação."
   >
     <div class="mt-8 flex flex-wrap gap-3">
-      <Botao href={whatsappUrl('Olá! Queria saber o que tem na fornada de hoje.')} externo>
+      <Botao href={whatsappUrl(msgFornada())} externo>
         <IconeWhatsApp slot="icone" class="h-4 w-4" />
         Fazer pedido
       </Botao>
@@ -30,7 +31,7 @@ import { whatsappUrl } from '../data/site';
 
   <GradeCategorias produtos={naFornada} />
 
-  <div class="mx-auto max-w-[1400px] px-5 pb-20 sm:px-8 sm:pb-24">
+  <div class="mx-auto max-w-[1600px] px-5 pb-20 sm:px-8 sm:pb-24">
     <Aviso titulo="Antes de vir">
       <p>
         Esta lista é o repertório da casa, não uma promessa de estoque. O que entra

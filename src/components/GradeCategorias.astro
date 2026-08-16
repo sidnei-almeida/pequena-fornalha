@@ -12,7 +12,7 @@ const grupos = categorias
   .filter((grupo) => grupo.itens.length > 0);
 ---
 
-<div class="mx-auto max-w-[1400px] px-5 sm:px-8">
+<div class="mx-auto max-w-[1600px] px-5 sm:px-8">
   {
     grupos.map(({ categoria, itens }) => (
       <section id={categoria.id} class="border-b border-carvao/15 py-16 last:border-b-0 sm:py-20">

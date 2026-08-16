@@ -6,6 +6,7 @@ import IconeWhatsApp from '../components/IconeWhatsApp.astro';
 import Botao from '../components/Botao.astro';
 import { gruposFaq } from '../data/faq';
 import { whatsappUrl } from '../data/site';
+import { msgDuvida } from '../data/mensagens';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -43,7 +44,7 @@ const jsonLd = {
     </nav>
   </CabecalhoPagina>
 
-  <div class="mx-auto max-w-[1400px] px-5 sm:px-8">
+  <div class="mx-auto max-w-[1600px] px-5 sm:px-8">
     {
       gruposFaq.map((grupo) => (
         <section id={grupo.id} class="py-14 sm:py-20">
@@ -57,13 +58,13 @@ const jsonLd = {
   </div>
 
   <section class="bg-carvao text-creme">
-    <div class="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 sm:py-20">
+    <div class="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-20">
       <div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <p class="max-w-xl font-serif text-2xl leading-relaxed sm:text-3xl">
           Não achou o que procurava?
         </p>
         <div class="flex flex-wrap gap-3">
-          <Botao href={whatsappUrl('Olá! Tenho uma dúvida sobre os pães.')} externo variante="claro">
+          <Botao href={whatsappUrl(msgDuvida())} externo variante="claro">
             <IconeWhatsApp slot="icone" class="h-4 w-4" />
             Fazer pedido
           </Botao>
